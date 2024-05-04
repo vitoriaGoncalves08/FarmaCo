@@ -1,7 +1,6 @@
-import { Text, View, StyleSheet, Image, TouchableOpacity, TextInput } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import { View, StyleSheet, Image, TouchableOpacity, TextInput } from 'react-native';
 
-const PassInput = () => {
+const InputPassword = () => {
   return(
     <View style={styles.inputWithIcon}>
       <TextInput
@@ -16,7 +15,7 @@ const PassInput = () => {
   );
 }
 
-export default PassInput;
+export default InputPassword;
 
 const styles = StyleSheet.create({
     txtinput: {

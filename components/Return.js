@@ -1,7 +1,6 @@
-import React, { useEffect } from 'react';
-import { Text, SafeAreaView, StyleSheet, Image, View, TouchableOpacity, TextInput } from 'react-native';
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { NavigationContainer, useNavigation } from "@react-navigation/native";
+import React from 'react';
+import { StyleSheet, Image, TouchableOpacity } from 'react-native';
+import { useNavigation } from "@react-navigation/native";
 
 
 

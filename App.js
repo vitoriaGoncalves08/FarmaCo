@@ -1,12 +1,11 @@
 import React, { useEffect } from 'react';
 import { Text, SafeAreaView, StyleSheet, Image } from 'react-native';
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { NavigationContainer, useNavigation } from "@react-navigation/native";
-import LogoImage from './assets/Farma.co.png';
-import Inicial from './Inicial';
-import Cadastro from './Cadastro';
-import Login from './Login';
-import Catalogo from './Catalogo'
+import { NavigationContainer } from "@react-navigation/native";
+import Inicial from './app/Inicial';
+import Cadastro from './app/Cadastro';
+import Login from './app/Login';
+import Catalogo from './app/Catalogo'
 
 const Stack = createNativeStackNavigator();
 
@@ -31,7 +30,7 @@ const Tela = ({navigation}) => {
 export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Tela">
+      <Stack.Navigator initialRouteName="Tela" screenOptions={{ headerShown: false }}>
         <Stack.Screen name="Tela" component={Tela} />
         <Stack.Screen name="Inicial" component={Inicial} />
         <Stack.Screen name="Cadastro" component={Cadastro} />
@@ -56,7 +55,7 @@ const styles = StyleSheet.create({
     fontSize: 25,
     fontWeight: 'bold',
     textAlign: 'center',
-    fontFamily: 'Helvetica',
+    fontFamily: 'Poppins-ExtraBold',
   },
   logo: {
     width: 160,
