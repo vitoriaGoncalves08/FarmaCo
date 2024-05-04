@@ -1,4 +1,4 @@
-import { Text, SafeAreaView, StyleSheet, Image, TextInput, Button, TouchableOpacity, View  } from 'react-native';
+import { Text, SafeAreaView, StyleSheet, Image, TouchableOpacity, View  } from 'react-native';
 import { useNavigation } from '@react-navigation/native'
 
 const Inicial = () => {
@@ -9,7 +9,7 @@ const Inicial = () => {
       <Text style={styles.paragraph}>
         FARMA.CO
       </Text>
-      <Image style={styles.svginicial} source={require('./assets/Medical.png')} />
+      <Image style={styles.svginicial} source={require('../assets/Medical.png')} />
       <Text style={styles.centraltxt}>
         Vamos lá!
       </Text>
@@ -27,7 +27,7 @@ const Inicial = () => {
             style={styles.btnLogin}
             onPress={() => navigation.navigate("Cadastro")}>
             <Text style={styles.btnLoginTxt}>Cadastrar minha conta</Text>
-            <Image style={styles.sairIcon} source={require('./assets/sair.png')} />
+            <Image style={styles.sairIcon} source={require('../assets/sair.png')} />
           </TouchableOpacity>
         </View>
       </View>
@@ -35,11 +35,6 @@ const Inicial = () => {
     </SafeAreaView>
   );
 }
-
-// Configuração de navegação para desativar o cabeçalho padrão
-Inicial.navigationOptions = {
-  headerShown: false,
-};
 
 export default Inicial;
 
@@ -49,7 +44,7 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start', 
     alignItems: 'center', 
     backgroundColor: 'white',
-    padding: 8
+    padding: 8,
   },
   paragraph: {
     marginTop: 60,
@@ -58,7 +53,7 @@ const styles = StyleSheet.create({
     fontSize: 15,
     fontWeight: 'bold',
     textAlign: 'center',
-    fontFamily: 'Helvetica',
+    fontFamily: 'Poppins_700Bold',
   },
   svginicial: {
     width: 250,
@@ -67,9 +62,9 @@ const styles = StyleSheet.create({
   },
   centraltxt: {
     fontSize: 22,
-    fontWeight: 'bold',
     color: '#090B0B',
     margin: 10,
+    fontFamily: 'Poppins_700Bold'
   },
   subtxtcont: {
     width: 300,
@@ -94,7 +89,6 @@ const styles = StyleSheet.create({
   buttonText:{
     color: 'white',
     textAlign: 'center',
-    fontWeight: '',
     fontFamily: '',
     fontSize: 14,
   },

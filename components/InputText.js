@@ -1,8 +1,7 @@
-import { Text, View, StyleSheet, Image, TouchableOpacity, TextInput } from 'react-native';
+import { View, StyleSheet, TextInput } from 'react-native';
 import React from 'react';
-import { useNavigation } from '@react-navigation/native';
 
-const InfoBox = () => {
+const InputText = () => {
   return (
     <View style={styles.inputArea}>
       <TextInput style={styles.txtinput} placeholder=""/>
@@ -10,7 +9,7 @@ const InfoBox = () => {
   );
 }
 
-export default InfoBox;
+export default InputText;
 
 const styles = StyleSheet.create({
   inputArea:{

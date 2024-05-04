@@ -1,8 +1,8 @@
-import { Text, SafeAreaView, StyleSheet, Image, TextInput, Button, TouchableOpacity, View  } from 'react-native';
-import InfoBox from './components/InfoBox';
-import Botao from './components/Botao';
-import Return from './components/Return';
-import PassInput from './components/PassInput';
+import { Text, SafeAreaView, StyleSheet, Image, TouchableOpacity, View  } from 'react-native';
+import InputText from '../components/InputText';
+import Botao from '../components/Botao';
+import Return from '../components/Return';
+import InputPassword  from '../components/InputPassword';
 import { useNavigation } from '@react-navigation/native';
 
 const Login = () => {
@@ -14,14 +14,14 @@ const Login = () => {
         <Return href={'Cadastro'}/>
         <Text style={styles.mainTxt}>Login</Text>
         <Text style={styles.inputTxt}>E-mail</Text>
-        <InfoBox/>
+        <InputText/>
         <Text style={styles.inputTxt}>Senha</Text>
-        <PassInput/>
+        <InputPassword />
         <View style={styles.loginArea}>
           <TouchableOpacity style={styles.loginBtn}>
             <Text style={styles.loginTxt}>Esqueceu a senha?</Text>
           </TouchableOpacity>
-          <Image style={styles.passIcon} source={require('./assets/cadeado.png')} />
+          <Image style={styles.passIcon} source={require('../assets/cadeado.png')} />
         </View>
         <Botao href={'Catalogo'} textBtn={'Login'}/>
 

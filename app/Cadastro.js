@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Text, SafeAreaView, StyleSheet, Image, View, TouchableOpacity, TextInput, KeyboardAvoidingView, ScrollView } from 'react-native';
 import { useNavigation } from "@react-navigation/native";
 
@@ -12,7 +12,7 @@ const Cadastro = () => {
         <ScrollView contentContainerStyle={{ flexGrow: 4 }}>
           <View style={styles.column}>
             <TouchableOpacity style={styles.rtn} onPress={() => navigation.navigate("Inicial")}>
-              <Image style={styles.rtnbtn} source={require('./assets/return.png')} />
+              <Image style={styles.rtnbtn} source={require('../assets/return.png')} />
             </TouchableOpacity>
             <Text style={styles.mainTxt}>Cadastre-se e conheça nossa variedade de produtos!</Text>
             <Text style={styles.subTxt}>Preencha os dados abaixo para continuar</Text>
@@ -36,7 +36,7 @@ const Cadastro = () => {
                 placeholder=""
               />
               <TouchableOpacity>
-                <Image style={styles.revealbtn} source={require('./assets/reveal.png')} />
+                <Image style={styles.revealbtn} source={require('../assets/reveal.png')} />
               </TouchableOpacity>
             </View>
             <Text style={styles.inputTxt}>Confirmar senha</Text>
@@ -47,7 +47,7 @@ const Cadastro = () => {
                 placeholder=""
               />
               <TouchableOpacity>
-                <Image style={styles.revealbtn} source={require('./assets/reveal.png')} />
+                <Image style={styles.revealbtn} source={require('../assets/reveal.png')} />
               </TouchableOpacity>
             </View>
             <View style={styles.loginArea}>
@@ -97,7 +97,6 @@ const styles = StyleSheet.create({
   },
   subTxt: {
     fontSize:16,
-    fontWeight: '',
     marginBottom: 8,
     marginLeft: 10,
     marginTop: 8,
@@ -106,7 +105,6 @@ const styles = StyleSheet.create({
   },
   inputTxt: {
     fontSize:14,
-    fontWeight: '',
     marginBottom: 5,
     marginLeft: 10,
     marginTop: 10,
@@ -160,7 +158,6 @@ const styles = StyleSheet.create({
   },
   loginBtnTxt: {
     fontSize: 13,
-    fontWeight: '',
     color: '#118E96',
   },
   loginBtnArea: {
@@ -179,7 +176,6 @@ const styles = StyleSheet.create({
   buttonText:{
     color: 'white',
     textAlign: 'center',
-    fontWeight: '',
     fontSize: 16,
   },
 });
