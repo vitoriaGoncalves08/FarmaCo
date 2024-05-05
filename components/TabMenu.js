@@ -1,11 +1,12 @@
-import React, { Children } from 'react';
+import React, { children } from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { StyleSheet, View, Image, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, TouchableOpacity } from 'react-native';
 import Inicial from '../app/Inicial';
 import Cadastro from '../app/Cadastro';
 import Login from '../app/Login';
 import Splash from '../app/Splash';
 import Catalogo from '../app/Catalogo';
+import { MaterialCommunityIcons, FontAwesome5,FontAwesome, Ionicons } from '@expo/vector-icons';
 
 const Tab = createBottomTabNavigator();
 
@@ -36,12 +37,13 @@ export const TabMenu = () => {
             <Tab.Screen name='Login' component={Login}
                 options={{
                     tabBarIcon: ({ focused }) => (
-                        <View style={{ alignItems: 'center', justifyContent: 'center', top: 10 }}>
-                            <Image
-                                source={require('../assets/home.png')}
+                        <View style={{ alignItems: 'center', justifyContent: 'center', top: 12 }}>
+                            {/* <Image
+                                source={require('../assets/img/home.png')}
                                 resizeMode='contain'
                                 style={{ width: 25, height: 25, tintColor: focused ? '#118E96' : '#424141' }}
-                            />
+                            /> */}
+                            <MaterialCommunityIcons name="home" size={29} color={focused ? '#118E96' : '#424141'} />
                         </View>
                     )
                 }}
@@ -49,12 +51,8 @@ export const TabMenu = () => {
             <Tab.Screen name='Splash' component={Splash}
                 options={{
                     tabBarIcon: ({ focused }) => (
-                        <View style={{ alignItems: 'center', justifyContent: 'center', top: 10 }}>
-                            <Image
-                                source={require('../assets/Search.png')}
-                                resizeMode='contain'
-                                style={{ width: 25, height: 25, tintColor: focused ? '#118E96' : '#424141' }}
-                            />
+                        <View style={{ alignItems: 'center', justifyContent: 'center', top: 12 }}>
+                            <FontAwesome name="search" size={24} color={focused ? '#118E96' : '#424141'} />
                         </View>
                     )
                 }} />
@@ -62,12 +60,8 @@ export const TabMenu = () => {
         <Tab.Screen name='Cadastro' component={Cadastro}
             options={{
                 tabBarIcon: ({ focused }) => (
-                    <View style={{ alignItems: 'center', justifyContent: 'center', top: 10 }}>
-                        <Image
-                            source={require('../assets/carrinho.png')}
-                            resizeMode='contain'
-                            style={{ width: 25, height: 25, tintColor: '#fff'}}
-                        />
+                    <View style={{ alignItems: 'center', justifyContent: 'center' }}>
+                        <FontAwesome5 name="plus" size={24} color="#fff" />
                     </View>
                 ),
                 tabBarButton: (props) => (
@@ -79,20 +73,17 @@ export const TabMenu = () => {
             <Tab.Screen name='Catalogo' component={Catalogo}
                 options={{
                     tabBarIcon: ({ focused }) => (
-                        <Image source={require('../assets/carrinho.png')} resizeMode='contain'
-                            style={{ width: 30, height: 30, tintColor: focused ? '#118E96' : '#424141' }} />
+                        <View style={{ alignItems: 'center', justifyContent: 'center', top: 12 }}>
+                            <FontAwesome5 name="shopping-cart" size={22} color={focused ? '#118E96' : '#424141'} />
+                         </View>
                     )
                 }} />
 
             <Tab.Screen name='Inicial' component={Inicial}
                 options={{
                     tabBarIcon: ({ focused }) => (
-                        <View style={{ alignItems: 'center', justifyContent: 'center', top: 10 }}>
-                            <Image
-                                source={require('../assets/person.png')}
-                                resizeMode='contain'
-                                style={{ width: 25, height: 25, tintColor: focused ? '#118E96' : '#424141' }}
-                            />
+                        <View style={{ alignItems: 'center', justifyContent: 'center', top: 12 }}>
+                            <Ionicons name="person" size={24} color={focused ? '#118E96' : '#424141'} />
                         </View>
                     )
                 }} />

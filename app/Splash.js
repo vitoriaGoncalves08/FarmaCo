@@ -14,7 +14,7 @@ const Splash = ({navigation}) => {
   
     return (
       <SafeAreaView style={styles.container}>
-        <Image style={styles.logo} source={require('../assets/Farma.co.png')} />
+        <Image style={styles.logo} source={require('../assets/img/icon.png')} />
         <Text style={styles.paragraph}>FARMA.CO</Text>
       </SafeAreaView>
     );
