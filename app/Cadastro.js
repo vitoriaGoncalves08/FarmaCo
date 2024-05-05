@@ -12,7 +12,7 @@ const Cadastro = () => {
         <ScrollView contentContainerStyle={{ flexGrow: 4 }}>
           <View style={styles.column}>
             <TouchableOpacity style={styles.rtn} onPress={() => navigation.navigate("Inicial")}>
-              <Image style={styles.rtnbtn} source={require('../assets/return.png')} />
+              <Image style={styles.rtnbtn} source={require('../assets/img/return.png')} />
             </TouchableOpacity>
             <Text style={styles.mainTxt}>Cadastre-se e conheça nossa variedade de produtos!</Text>
             <Text style={styles.subTxt}>Preencha os dados abaixo para continuar</Text>
@@ -36,7 +36,7 @@ const Cadastro = () => {
                 placeholder=""
               />
               <TouchableOpacity>
-                <Image style={styles.revealbtn} source={require('../assets/reveal.png')} />
+                <Image style={styles.revealbtn} source={require('../assets/img/reveal.png')} />
               </TouchableOpacity>
             </View>
             <Text style={styles.inputTxt}>Confirmar senha</Text>
@@ -47,7 +47,7 @@ const Cadastro = () => {
                 placeholder=""
               />
               <TouchableOpacity>
-                <Image style={styles.revealbtn} source={require('../assets/reveal.png')} />
+                <Image style={styles.revealbtn} source={require('../assets/img/reveal.png')} />
               </TouchableOpacity>
             </View>
             <View style={styles.loginArea}>

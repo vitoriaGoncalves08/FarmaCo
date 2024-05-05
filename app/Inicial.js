@@ -9,7 +9,7 @@ const Inicial = () => {
       <Text style={styles.paragraph}>
         FARMA.CO
       </Text>
-      <Image style={styles.svginicial} source={require('../assets/Medical.png')} />
+      <Image style={styles.svginicial} source={require('../assets/img/Medical.png')} />
       <Text style={styles.centraltxt}>
         Vamos lá!
       </Text>
@@ -27,7 +27,7 @@ const Inicial = () => {
             style={styles.btnLogin}
             onPress={() => navigation.navigate("Cadastro")}>
             <Text style={styles.btnLoginTxt}>Cadastrar minha conta</Text>
-            <Image style={styles.sairIcon} source={require('../assets/sair.png')} />
+            <Image style={styles.sairIcon} source={require('../assets/img/sair.png')} />
           </TouchableOpacity>
         </View>
       </View>
@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
     fontSize: 15,
     fontWeight: 'bold',
     textAlign: 'center',
-    fontFamily: 'Poppins_700Bold',
+    fontFamily: 'Helvetica',
   },
   svginicial: {
     width: 250,
@@ -64,7 +64,7 @@ const styles = StyleSheet.create({
     fontSize: 22,
     color: '#090B0B',
     margin: 10,
-    fontFamily: 'Poppins_700Bold'
+    fontFamily: 'Helvetica'
   },
   subtxtcont: {
     width: 300,
