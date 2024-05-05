@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
     fontSize: 15,
     fontWeight: 'bold',
     textAlign: 'center',
-    fontFamily: 'Poppins_700Bold',
+    fontFamily: 'Helvetica',
   },
   svginicial: {
     width: 250,
@@ -64,7 +64,7 @@ const styles = StyleSheet.create({
     fontSize: 22,
     color: '#090B0B',
     margin: 10,
-    fontFamily: 'Poppins_700Bold'
+    fontFamily: 'Helvetica'
   },
   subtxtcont: {
     width: 300,
