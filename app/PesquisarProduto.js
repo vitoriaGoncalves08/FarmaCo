@@ -53,6 +53,7 @@ const PesquisarProduto  = () => {
               Com receita
             </Text>
           </TouchableOpacity>
+
           <TouchableOpacity
             style={selectedFilter === 'Sem receita'}
             onPress={() => handleFilterPress('Sem receita')}
@@ -61,6 +62,7 @@ const PesquisarProduto  = () => {
               Sem receita
             </Text>
           </TouchableOpacity>
+
           <TouchableOpacity
             style={selectedFilter === 'Bebê'}
             onPress={() => handleFilterPress('Bebê')}
@@ -69,6 +71,7 @@ const PesquisarProduto  = () => {
               Bebê
             </Text>
           </TouchableOpacity>
+
           <TouchableOpacity
             style={selectedFilter === 'Beleza'}
             onPress={() => handleFilterPress('Beleza')}
@@ -77,6 +80,7 @@ const PesquisarProduto  = () => {
               Beleza
             </Text>
           </TouchableOpacity>
+
           <TouchableOpacity
             style={selectedFilter === 'Higiene'}
             onPress={() => handleFilterPress('Higiene')}
@@ -166,11 +170,12 @@ const styles = StyleSheet.create({
   },
   filters:{
     width:'90%',
-    marginTop: 10,
+    marginTop: 15,
     flexDirection: 'row',
     justifyContent: 'space-between'
   },
   filterText: {
+    fontSize: 17,
     color: 'black',
     textDecorationLine: 'none',
   },

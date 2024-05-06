@@ -1,66 +1,34 @@
-import React from 'react';
-import { Text, View, StyleSheet, TouchableOpacity } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import React from "react";
+import { View, StyleSheet } from "react-native";
 
-const Produto = ({ nome, onPress }) => {
+const ExemploFlexbox = () => {
   return (
-    <TouchableOpacity style={styles.produto} onPress={onPress}>
-      <Text style={styles.nome}>{nome}</Text>
-    </TouchableOpacity>
+      <View style={styles.flexContainer}>
+        <View style={[styles.box, { backgroundColor: "red" }]} />
+        <View style={[styles.box, { backgroundColor: "green" }]} />
+        <View style={[styles.box, { backgroundColor: "blue" }]} />
+        <View style={[styles.box, { backgroundColor: "yellow" }]} />
+        <View style={[styles.box, { backgroundColor: "orange" }]} />
+        <View style={[styles.box, { backgroundColor: "purple" }]} />
+      </View>
   );
-}
-
-const Produtos = () => {
-  const navigation = useNavigation();
-
-  const produtos = [
-    { id: 1, nome: 'Produto 1'},
-    { id: 2, nome: 'Produto 2'},
-    { id: 3, nome: 'Produto 3'},
-    // Adicione mais produtos conforme necessário
-  ];
-
-  return (
-    <View style={styles.prodRow}>
-      {produtos.map((produto) => (
-        <Produto
-          key={produto.id}
-          nome={produto.nome}
-          imagem={produto.imagem}
-          onPress={() => navigation.navigate('DetalhesProduto', { produtoId: produto.id })}
-        />
-      ))}
-    </View>
-  );
-}
+};
 
 const styles = StyleSheet.create({
-  prodRow: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    justifyContent: 'space-around',
-    marginTop: 10,
+  flexContainer: {
+    borderWidth: 1, 
+    borderColor: 'red',
+    width: '90%',
+    flexDirection: "row",
+    flexWrap: "wrap",
+    justifyContent: "center",
+    margin: 15,
   },
-  produto: {
-    width: '45%',
-    aspectRatio: 1,
-    marginBottom: 10,
-    borderRadius: 10,
-    backgroundColor: '#f0f0f0',
-    justifyContent: 'center',
-    alignItems: 'center',
-    padding: 10,
-  },
-  imagem: {
-    width: '80%',
-    height: '80%',
-    resizeMode: 'contain',
-  },
-  nome: {
-    marginTop: 5,
-    fontSize: 14,
-    textAlign: 'center',
+  box: {
+    width: 200,
+    height: 200,
+    margin: 10,
   },
 });
 
-export default Produtos;
+export default ExemploFlexbox;
