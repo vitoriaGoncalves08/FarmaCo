@@ -41,7 +41,9 @@ const Catalogo  = () => {
         <View style={styles.rowTags}>
           <View style={styles.tagColumn}>
             <View style={styles.tag}>
-              <TouchableOpacity style = {styles.tagIcon}>
+              <TouchableOpacity 
+                style = {styles.tagIcon}
+                onPress={() => navigation.navigate('PesquisarProduto')}>
                 <Image style={styles.kartIcon} source={require('../assets/carrinho.png')} />
               </TouchableOpacity>
             </View>

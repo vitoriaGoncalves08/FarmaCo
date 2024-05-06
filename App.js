@@ -6,6 +6,7 @@ import Inicial from './app/Inicial';
 import Cadastro from './app/Cadastro';
 import Login from './app/Login';
 import Catalogo from './app/Catalogo'
+import PesquisarProduto from './app/PesquisarProduto'
 
 const Stack = createNativeStackNavigator();
 
@@ -36,6 +37,7 @@ export default function App() {
         <Stack.Screen name="Cadastro" component={Cadastro} />
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="Catalogo" component={Catalogo} />
+        <Stack.Screen name="PesquisarProduto" component={PesquisarProduto} />
       </Stack.Navigator>
     </NavigationContainer>
   );
