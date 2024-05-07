@@ -23,7 +23,7 @@ const Inicial = ({ navigation }) => {
         <View style={styles.sair}>
           <TouchableOpacity
             style={styles.btnLogin}
-            onPress={() => navigation.navigate("Cadastro")}>
+            onPress={() => navigation.navigate('Cadastro')}>
             <Text style={styles.btnLoginTxt}>Cadastrar minha conta</Text>
             <Image style={styles.sairIcon} source={require('../assets/img/sair.png')} />
           </TouchableOpacity>
