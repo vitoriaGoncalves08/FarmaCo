@@ -1,9 +1,7 @@
-import { Text, SafeAreaView, StyleSheet, Image, TouchableOpacity, View  } from 'react-native';
-import { useNavigation } from '@react-navigation/native'
+import React from 'react';
+import { Text, SafeAreaView, StyleSheet, Image, TouchableOpacity, View } from 'react-native';
 
-const Inicial = () => {
-  const navigation = useNavigation();
-
+const Inicial = ({ navigation }) => {
   return (
     <SafeAreaView style={styles.container}>
       <Text style={styles.paragraph}>
@@ -13,13 +11,13 @@ const Inicial = () => {
       <Text style={styles.centraltxt}>
         Vamos lá!
       </Text>
-      <View style={styles.subtxtcont}>      
+      <View style={styles.subtxtcont}>
         <Text style={styles.subtxt}>
           Assim como a saúde deveria ser universal, o seu acesso deveria ser a mesma maneira.
         </Text>
         <TouchableOpacity
           style={styles.btnEnter}
-          onPress={() => navigation.navigate('Catalogo')}>
+          onPress={() => navigation.navigate('TabMenu')}>
           <Text style={styles.buttonText}>Começar sem login</Text>
         </TouchableOpacity>
         <View style={styles.sair}>
@@ -41,8 +39,8 @@ export default Inicial;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'flex-start', 
-    alignItems: 'center', 
+    justifyContent: 'flex-start',
+    alignItems: 'center',
     backgroundColor: 'white',
     padding: 8,
   },
@@ -69,7 +67,7 @@ const styles = StyleSheet.create({
   subtxtcont: {
     width: 300,
     height: 70,
-    alignItems: 'center', 
+    alignItems: 'center',
   },
   subtxt: {
     fontSize: 13,
@@ -86,7 +84,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     margin: 10,
   },
-  buttonText:{
+  buttonText: {
     color: 'white',
     textAlign: 'center',
     fontFamily: '',
@@ -96,12 +94,11 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     alignContent: 'center',
-    width:220,
-    height:55,
+    width: 220,
+    height: 55,
     backgroundColor: 'white',
-
   },
-  btnLogin:{
+  btnLogin: {
     width: 180,
     height: 38,
     color: 'green',
@@ -124,6 +121,4 @@ const styles = StyleSheet.create({
     marginLeft: 4,
     marginTop: 2.4,
   }
-
-
 });

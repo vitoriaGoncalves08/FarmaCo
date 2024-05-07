@@ -11,7 +11,7 @@ import { MaterialCommunityIcons, FontAwesome5, FontAwesome, Ionicons, MaterialIc
 
 const Tab = createBottomTabNavigator();
 
-const user = { nome: 'admin', senha: 1234 };
+const user = { nome: 'admin', senha: 123 };
 
 const CustomTabMenuBottom = ({ children, onPress }) => (
     <TouchableOpacity
@@ -31,9 +31,9 @@ export const TabMenu = () => {
         <Tab.Navigator
             screenOptions={{
                 headerShown: false,
-                tabBarStyle: styles.tabBar
-            }}
-            tabBarOptions={{ showLabel: false }}>
+                tabBarStyle: styles.tabBar,
+                tabBarShowLabel: false,
+            }}>
 
             <Tab.Screen name='Login' component={Login}
                 options={{
