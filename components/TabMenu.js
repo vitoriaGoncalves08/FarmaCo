@@ -6,19 +6,20 @@ import Cadastro from '../app/Cadastro';
 import Login from '../app/Login';
 import Splash from '../app/Splash';
 import Catalogo from '../app/Catalogo';
-import { MaterialCommunityIcons, FontAwesome5,FontAwesome, Ionicons } from '@expo/vector-icons';
+import Log from '../app/Log';
+import { MaterialCommunityIcons, FontAwesome5, FontAwesome, Ionicons, MaterialIcons } from '@expo/vector-icons';
 
 const Tab = createBottomTabNavigator();
 
 const user = { nome: 'admin', senha: 1234 };
 
 const CustomTabMenuBottom = ({ children, onPress }) => (
-    <TouchableOpacity 
-    style={{
-        top: -20,
-        justifyContent: 'center',
-        alignItems: 'center',
-    }}
+    <TouchableOpacity
+        style={{
+            top: -20,
+            justifyContent: 'center',
+            alignItems: 'center',
+        }}
         onPress={onPress}
     >
         <View style={{ width: 55, height: 55, borderRadius: 35, backgroundColor: '#118E96' }}>{children}</View>
@@ -37,7 +38,7 @@ export const TabMenu = () => {
             <Tab.Screen name='Login' component={Login}
                 options={{
                     tabBarIcon: ({ focused }) => (
-                        <View style={{ alignItems: 'center', justifyContent: 'center', top: 12 }}>
+                        <View style={{ alignItems: 'center', justifyContent: 'center' }}>
                             {/* <Image
                                 source={require('../assets/img/home.png')}
                                 resizeMode='contain'
@@ -51,38 +52,51 @@ export const TabMenu = () => {
             <Tab.Screen name='Splash' component={Splash}
                 options={{
                     tabBarIcon: ({ focused }) => (
-                        <View style={{ alignItems: 'center', justifyContent: 'center', top: 12 }}>
+                        <View style={{ alignItems: 'center', justifyContent: 'center' }}>
                             <FontAwesome name="search" size={24} color={focused ? '#118E96' : '#424141'} />
                         </View>
                     )
                 }} />
-    {!user || (user.nome !== 'admin' || user.senha !== 123) && (
-        <Tab.Screen name='Cadastro' component={Cadastro}
-            options={{
-                tabBarIcon: ({ focused }) => (
-                    <View style={{ alignItems: 'center', justifyContent: 'center' }}>
-                        <FontAwesome5 name="plus" size={24} color="#fff" />
-                    </View>
-                ),
-                tabBarButton: (props) => (
-                    <CustomTabMenuBottom {...props} />
-                )
-            }} 
-            />
-        )}
-            <Tab.Screen name='Catalogo' component={Catalogo}
-                options={{
-                    tabBarIcon: ({ focused }) => (
-                        <View style={{ alignItems: 'center', justifyContent: 'center', top: 12 }}>
-                            <FontAwesome5 name="shopping-cart" size={22} color={focused ? '#118E96' : '#424141'} />
-                         </View>
-                    )
-                }} />
+
+            {user.nome === 'admin' && user.senha === 123 ? (
+                <>
+                    <Tab.Screen name='Cadastro' component={Cadastro}
+                        options={{
+                            tabBarIcon: ({ focused }) => (
+                                <View style={{ alignItems: 'center', justifyContent: 'center' }}>
+                                    <FontAwesome5 name="plus" size={24} color="#fff" />
+                                </View>
+                            ),
+                            tabBarButton: (props) => (
+                                <CustomTabMenuBottom {...props} />
+                            )
+                        }}
+                    />
+                    <Tab.Screen name='Log' component={Log}
+                        options={{
+                            tabBarIcon: ({ focused }) => (
+                                <View style={{ alignItems: 'center', justifyContent: 'center' }}>
+                                    <MaterialIcons name="dashboard" size={24} color={focused ? '#118E96' : '#424141'} />
+                                </View>
+                            )
+                        }} />
+                </>
+            ) : (
+                <Tab.Screen name='Catalogo' component={Catalogo}
+                    options={{
+                        tabBarIcon: ({ focused }) => (
+                            <View style={{ alignItems: 'center', justifyContent: 'center' }}>
+                                <FontAwesome5 name="shopping-cart" size={22} color={focused ? '#118E96' : '#424141'} />
+                            </View>
+                        )
+                    }} />
+
+            )}
 
             <Tab.Screen name='Inicial' component={Inicial}
                 options={{
                     tabBarIcon: ({ focused }) => (
-                        <View style={{ alignItems: 'center', justifyContent: 'center', top: 12 }}>
+                        <View style={{ alignItems: 'center', justifyContent: 'center' }}>
                             <Ionicons name="person" size={24} color={focused ? '#118E96' : '#424141'} />
                         </View>
                     )
