@@ -5,6 +5,7 @@ import Inicial from './app/Inicial';
 import { TabMenu } from './components/TabMenu';
 import Splash from './app/Splash';
 import Cadastro from './app/Cadastro';
+import DetalheProduto from './app/DetalheProduto';
 
 const Stack = createNativeStackNavigator();
 

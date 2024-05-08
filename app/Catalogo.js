@@ -89,9 +89,12 @@ const Catalogo  = () => {
             </View>
           </View>
           <View style={styles.prodColumn}>
-            <View style={styles.prodBox}>
-            
-            </View>
+            <TouchableOpacity>
+              <View style={styles.prodBox}
+                  onPress={() => navigation.navigate('DetalheProduto')}>
+              </View>
+            </TouchableOpacity>
+
           </View>
         </View>
     </SafeAreaView>
