@@ -25,6 +25,11 @@ export default function App() {
               options={{ headerShown: false }}
             />
             <Stack.Screen
+              name="DetalheProduto"
+              component={DetalheProduto}
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen
               name="TabMenu"
               component={TabMenu}
               options={{ headerShown: false }}

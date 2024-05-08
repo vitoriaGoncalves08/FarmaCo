@@ -77,7 +77,7 @@ const Catalogo  = () => {
               <Text style={styles.hiTxt}>Mega Ofertas</Text>
             </View>
             <View style = {styles.notArea}>
-              <TouchableOpacity style = {styles.iconSup}>
+              <TouchableOpacity style = {styles.iconSup} onPress={() => navigation.navigate('DetalheProduto')}>
                 <Text>Saiba mais</Text>
               </TouchableOpacity>
             </View>
@@ -89,9 +89,8 @@ const Catalogo  = () => {
             </View>
           </View>
           <View style={styles.prodColumn}>
-            <TouchableOpacity>
-              <View style={styles.prodBox}
-                  onPress={() => navigation.navigate('DetalheProduto')}>
+            <TouchableOpacity >
+              <View style={styles.prodBox}>
               </View>
             </TouchableOpacity>
 
