@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Text, SafeAreaView, StyleSheet, Image, TouchableOpacity, View, ScrollView } from 'react-native';
+import { Text, SafeAreaView, StyleSheet, Image, TouchableOpacity, View, ScrollView, CheckBox } from 'react-native';
+import { Entypo } from '@expo/vector-icons';
 
 const Carrinho = ({ navigation }) => {
   const [carrinho, setCarrinho] = useState([
@@ -23,6 +24,7 @@ const Carrinho = ({ navigation }) => {
       setItensSelecionados(itensSelecionados.filter(itemId => itemId !== id));
     } else {
       setItensSelecionados([...itensSelecionados, id]);
+      
     }
   };
 
@@ -51,23 +53,22 @@ const Carrinho = ({ navigation }) => {
         <Text style={styles.title}>Carrinho</Text>
       </View>
       <View style={styles.todoscheckbox}>
-        <TouchableOpacity
-          style={[styles.checkbox, selecionadoTodos ? styles.checkboxSelecionado : null]}
-          onPress={toggleSelecionadoTodos}
-        ></TouchableOpacity>
+           <CheckBox
+              value={selecionadoTodos}
+              onValueChange={toggleSelecionadoTodos}
+              style={[styles.checkbox, selecionadoTodos]}
+            />
         <Text>Selecionar todos</Text>
       </View>
       <ScrollView>
         {carrinho.map(item => (
           <View key={item.id} style={styles.card}>
             <View style={styles.item}>
-              <TouchableOpacity
-                style={[
-                  styles.checkbox,
-                  itensSelecionados.includes(item.id) ? styles.checkboxSelecionado : null
-                ]}
-                onPress={() => toggleItemSelecionado(item.id)}
-              ></TouchableOpacity>
+               <CheckBox
+                value={itensSelecionados.includes(item.id)}
+                onValueChange={() => toggleItemSelecionado(item.id)}
+                style={[styles.checkbox, itensSelecionados.includes(item.id) ? styles.checkboxSelecionado : null]}
+              />
               <Image source={require('../assets/img/carrinho.png')} style={styles.imagem} />
               <View style={styles.textos}>
                 <Text style={styles.titulo}>{item.nome}</Text>
@@ -84,7 +85,8 @@ const Carrinho = ({ navigation }) => {
       </ScrollView>
       <View style={styles.footer}>
         <Text>Subtotal: R$ {calcularSubtotal()}</Text>
-        <Text>Frete: R$ 5,00</Text>
+        <Text>Frete: R$ 5.00</Text>
+        <Text>TOTAL: R$ {calcularSubtotal() != 0 ? calcularSubtotal() + 5 : "5.00"}</Text>
         <TouchableOpacity style={styles.botaoPagamento}><Text style={styles.buttonText}>Continuar</Text></TouchableOpacity>
       </View>
     </SafeAreaView>
@@ -107,26 +109,15 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   checkbox: {
-    width: 20,
-    height: 20,
-    borderWidth: 1,
-    borderColor: '#000',
-    marginRight: 10,
+    width: 22,
+    height: 23,
+    borderRadius: 10,
   },
   rtnbtn: {
     width: 20,
     height: 20,
     marginBottom: 15,
     marginLeft: 10,
-  },
-  todoscheckbox: {
-    display: 'flex',
-    justifyContent: 'flex-start',
-    flexDirection: 'row',
-    marginLeft: 20
-  },
-  checkboxSelecionado: {
-    backgroundColor: '#000', // Cor quando selecionado
   },
   header: {
     marginTop: 10,
@@ -175,7 +166,7 @@ const styles = StyleSheet.create({
   footer: {
     backgroundColor: '#eee',
     padding: 10,
-    marginBottom: 70,
+    marginBottom: 85,
   },
   botaoPagamento: {
     width: '95%',
