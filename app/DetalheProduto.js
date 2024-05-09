@@ -1,37 +1,60 @@
 import { Text, StyleSheet, Button, View, Image } from 'react-native';
 import { useNavigation } from '@react-navigation/native'
-import { SafeAreaView } from 'react-native-web';
+import { SafeAreaView, ScrollView } from 'react-native-web';
 
 const DetalheProduto = () => {
   const navigation = useNavigation();
 
-  const Estrela = ({item}) => (
-    <View style={styles.containerEstrela}>
-       
-        <Image
-            style={styles.tinyLogo}
-            source={require('../assets/img/estrela.png')}
-        />
-        <Text style={styles.paragraph}>{item.nome}</Text>
-    </View>
-
-    );
-const ListaEstrelasHorizontal = () => {
-    return (
-        <FlatList
-            renderItem={Estrela}
-            keyExtractor={item => item.id}
-            horizontal={true}
-        />
-    );
-}
   return (
     <SafeAreaView style={styles.container}>
-        <Image style={styles.imgproduto} source={require('../assets/img/Dipirona.png')} />
+        <Image style={styles.imgproduto} 
+        source={require('../assets/img/Dipirona.png')} 
+        />
       <View>
         <Text style={styles.nomeproduto}>Dipirona Monoidratada 500mg
          10cpr Prati Donaduzzi</Text>
       </View>
+
+      <View style={styles.avaliacaocontainer}>
+
+      <View style={styles.estrelacontainer}>
+        <Image style={styles.estrelinha} 
+        source={require('../assets/img/estrela.png')} 
+        />
+        <Image style={styles.estrelinha} 
+        source={require('../assets/img/estrela.png')} 
+        />
+        <Image style={styles.estrelinha} 
+        source={require('../assets/img/estrela.png')} 
+        />
+        <Image style={styles.estrelinha} 
+        source={require('../assets/img/estrela.png')} 
+        />
+        <Image style={styles.estrelinha} 
+        source={require('../assets/img/estrela.png')} 
+        />
+        
+      </View>
+
+      <View style={styles.reacaocontainer} >
+      <Image style={styles.estrelinha} 
+        source={require('../assets/img/coracao.png')} 
+        />
+        <Image style={styles.estrelinha} 
+        source={require('../assets/img/compartilhar.png')} 
+        />
+      </View>
+
+      </View>
+
+      <View  style={styles.descontotext}>
+      <Text>R$00,00</Text>
+      </View>
+      <View  style={styles.precotext}>
+      <Text>R$12,50</Text>
+      </View>
+
+      <ScrollView>
       <View>
         <Text style={styles.title}>Descrição</Text>
       </View>
@@ -49,18 +72,16 @@ const ListaEstrelasHorizontal = () => {
         Informe imediatamente seu médico em caso de suspeita de gravidez.</Text>
       </View>
 
-      <View style={styles.container}>
-      <Image
-            style={styles.tinyLogo}
-            source={require('../assets/img/mais.png')}
-            onPress={() => setCount(count + 1)} title="Clique aqui!!!"
-        />
-      
-     </View>
-    
+      </ScrollView>
+
       <View>
         <Button title="Adicionar ao carrinho" />
       </View>
+
+     
+     
+      
+      
     </SafeAreaView>
   );
     
@@ -69,9 +90,17 @@ const ListaEstrelasHorizontal = () => {
 export default DetalheProduto;
 
 const styles = StyleSheet.create({
+  
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    backgroundColor: '#ecf0f1',
+    padding: 8,
+    elevation: 5,
+  },
     tinyLogo:{
-    width: 20,
-    height: 337,
+      width: 35,
+      height: 35,
     },
     nomeproduto:{
      fontWeight: 'bold',
@@ -81,12 +110,29 @@ const styles = StyleSheet.create({
      left: 24,
      right: 24,
     },
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    backgroundColor: '#ecf0f1',
-    padding: 8,
-  },
+    estrelinha:{
+      width: 25,
+      height: 25,
+    },
+    avaliacaocontainer:{
+      marginTop: 15,
+      left: 24,
+      right:24,
+      width:"100%",
+      flexDirection:"row",
+      justifyContent:"left",
+    },
+    estrelacontainer:{      
+      flexDirection:"row",
+     
+    },
+    reacaocontainer:{
+      left: 180,
+      right:24,
+      flexDirection:"row",
+      
+    },
+  
   imgproduto:{
     marginTop:35,
     width: 307,
@@ -95,6 +141,17 @@ const styles = StyleSheet.create({
     top: 50,
     left: 62,
 
+  },
+  descontotext:{
+    marginTop:10,
+    fontSize: 5,
+    left: 24,
+    color:"#A7A7A7",
+  },
+  precotext:{
+    fontSize: 44,
+    left: 24,
+    color:"#424141",
   },
   paragraph: {
     height: 80,
