@@ -5,9 +5,10 @@ import Inicial from './app/Inicial';
 import { TabMenu } from './components/TabMenu';
 import Splash from './app/Splash';
 import Cadastro from './app/Cadastro';
+import Carrinho from './app/Carrinho';
 import Login from './app/Login';
-import Catalogo from './app/Catalogo'
-import PesquisarProduto from './app/PesquisarProduto'
+import Catalogo from './app/Catalogo';
+import PesquisarProduto from './app/PesquisarProduto';
 
 const Stack = createNativeStackNavigator();
 
@@ -46,9 +47,14 @@ export default function App() {
               component={Catalogo}
               options={{ headerShown: false }}
             />
-             <Stack.Screen
+            <Stack.Screen
               name="Carrinho"
               component={Carrinho}
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen
+              name="PesquisarProduto"
+              component={PesquisarProduto}
               options={{ headerShown: false }}
             />
         </Stack.Navigator>
