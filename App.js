@@ -5,9 +5,9 @@ import Inicial from './app/Inicial';
 import { TabMenu } from './components/TabMenu';
 import Splash from './app/Splash';
 import Cadastro from './app/Cadastro';
-import Catalogo from './app/Catalogo';
 import Login from './app/Login';
-import Carrinho from './app/Carrinho';
+import Catalogo from './app/Catalogo'
+import PesquisarProduto from './app/PesquisarProduto'
 
 const Stack = createNativeStackNavigator();
 
