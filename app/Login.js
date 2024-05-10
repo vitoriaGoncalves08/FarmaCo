@@ -21,7 +21,7 @@ const Login = () => {
           <TouchableOpacity style={styles.loginBtn}>
             <Text style={styles.loginTxt}>Esqueceu a senha?</Text>
           </TouchableOpacity>
-          <Image style={styles.passIcon} source={require('../assets/cadeado.png')} />
+          <Image style={styles.passIcon} source={require('../assets/img/cadeado.png')} />
         </View>
         <Botao href={'Catalogo'} textBtn={'Login'}/>
 

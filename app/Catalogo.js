@@ -1,11 +1,7 @@
 import React from 'react';
 import { Text, SafeAreaView, StyleSheet, Image, View, TouchableOpacity, TextInput, KeyboardAvoidingView, ScrollView } from 'react-native';
 
-import { useNavigation } from "@react-navigation/native";
-
-
-const Catalogo  = () => {
-  const navigation = useNavigation();
+const Catalogo  = ({navigation}) => {
 
   return(
     <SafeAreaView style={styles.container}>
@@ -15,17 +11,17 @@ const Catalogo  = () => {
           </View>
           <View style = {styles.notArea}>
             <TouchableOpacity style = {styles.iconSup}>
-              <Image style={styles.kartIcon} source={require('../assets/carrinho.png')} />
+              <Image style={styles.kartIcon} source={require('../assets/img/carrinho.png')} />
             </TouchableOpacity>
             <TouchableOpacity style = {styles.iconSup}>
-              <Image style={styles.notIcon} source={require('../assets/notification.png')} />
+              <Image style={styles.notIcon} source={require('../assets/img/notification.png')} />
             </TouchableOpacity>
           </View>
         </View>
         <View style = {styles.columnBanner}>
           <View style={styles.inputWithIcon}>
             <TouchableOpacity>
-              <Image style={styles.searchBtn} source={require('../assets/Search.png')} />
+              <Image style={styles.searchBtn} source={require('../assets/img/Search.png')} />
             </TouchableOpacity>
             <TextInput
               style={styles.txtinput}
@@ -41,10 +37,8 @@ const Catalogo  = () => {
         <View style={styles.rowTags}>
           <View style={styles.tagColumn}>
             <View style={styles.tag}>
-              <TouchableOpacity 
-                style = {styles.tagIcon}
-                onPress={() => navigation.navigate('PesquisarProduto')}>
-                <Image style={styles.kartIcon} source={require('../assets/carrinho.png')} />
+              <TouchableOpacity style = {styles.tagIcon}>
+                <Image style={styles.kartIcon} source={require('../assets/img/carrinho.png')} />
               </TouchableOpacity>
             </View>
             <Text style={styles.tagTxt}>Remédios</Text>
@@ -52,7 +46,7 @@ const Catalogo  = () => {
           <View style={styles.tagColumn}>
             <View style={styles.tag}>
               <TouchableOpacity style = {styles.tagIcon}>
-                <Image style={styles.kartIcon} source={require('../assets/carrinho.png')} />
+                <Image style={styles.kartIcon} source={require('../assets/img/carrinho.png')} />
               </TouchableOpacity>
             </View>
             <Text style={styles.tagTxt}>Beleza</Text>
@@ -60,7 +54,7 @@ const Catalogo  = () => {
           <View style={styles.tagColumn}>
             <View style={styles.tag}>
               <TouchableOpacity style = {styles.tagIcon}>
-                <Image style={styles.kartIcon} source={require('../assets/carrinho.png')} />
+                <Image style={styles.kartIcon} source={require('../assets/img/carrinho.png')} />
               </TouchableOpacity>
             </View>
             <Text style={styles.tagTxt}>Bebê</Text>
@@ -68,7 +62,7 @@ const Catalogo  = () => {
           <View style={styles.tagColumn}>
             <View style={styles.tag}>
               <TouchableOpacity style = {styles.tagIcon}>
-                <Image style={styles.kartIcon} source={require('../assets/carrinho.png')} />
+                <Image style={styles.kartIcon} source={require('../assets/img/carrinho.png')} />
               </TouchableOpacity>
             </View>
             <Text style={styles.tagTxt}>Higiene</Text>

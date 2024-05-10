@@ -10,7 +10,7 @@ const Return = ({href}) =>{
   return(
   <TouchableOpacity style={styles.rtn}
     onPress={() => navigation.navigate(href)}>
-    <Image style={styles.rtnbtn} source={require('../assets/return.png')} />
+    <Image style={styles.rtnbtn} source={require('../assets/img/return.png')} />
   </TouchableOpacity>
   );
 }

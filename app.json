@@ -4,12 +4,12 @@
     "slug": "snack-63df61af-c3e1-41da-b1f6-6a8bdd2874dd",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/splash.png",
+    "icon": "./assets/img/icon.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/img/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#118E96"
     },
     "assetBundlePatterns": [
       "**/*"
@@ -19,15 +19,15 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
+        "foregroundImage": "./assets/img/adaptive-icon.png",
+        "backgroundColor": "#118E96"
       }
     },
     "web": {
-      "favicon": "./assets/favicon.png"
-    },
-    "plugins": [
-      "expo-font"
-    ]
+      "favicon": "./assets/img/favicon.png"
+    }
+
+
+
   }
 }
