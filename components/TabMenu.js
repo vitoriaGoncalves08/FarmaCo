@@ -6,11 +6,12 @@ import Cadastro from '../app/Cadastro';
 import Login from '../app/Login';
 import Splash from '../app/Splash';
 import Catalogo from '../app/Catalogo';
+import Carrinho from '../app/Carrinho';
 import { MaterialCommunityIcons, FontAwesome5, FontAwesome, Ionicons, MaterialIcons } from '@expo/vector-icons';
 
 const Tab = createBottomTabNavigator();
 
-const user = { nome: 'admin', senha: 123 };
+const user = { nome: 'admin', senha: 1234 };
 
 const CustomTabMenuBottom = ({ children, onPress }) => (
     <TouchableOpacity
@@ -81,7 +82,7 @@ export const TabMenu = () => {
                         }} />
                 </>
             ) : (
-                <Tab.Screen name='Catalogo' component={Catalogo}
+                <Tab.Screen name='Carrinho' component={Carrinho}
                     options={{
                         tabBarIcon: ({ focused }) => (
                             <View style={{ alignItems: 'center', justifyContent: 'center' }}>
