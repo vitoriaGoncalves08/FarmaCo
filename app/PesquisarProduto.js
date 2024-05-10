@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Text, SafeAreaView, StyleSheet, Image, View, TouchableOpacity, TextInput, KeyboardAvoidingView, ScrollView } from 'react-native';
+import { Text, SafeAreaView, StyleSheet, Image, View, TouchableOpacity, TextInput, ScrollView } from 'react-native';
 import Produto from '../components/Produtos';
 
 import { useNavigation } from "@react-navigation/native";
@@ -92,6 +92,8 @@ const PesquisarProduto  = () => {
         </View>     
 
         <Produto />
+        <Produto />
+        <Produto />
 
     </SafeAreaView>
   );
@@ -183,6 +185,4 @@ const styles = StyleSheet.create({
     color: '#118E96',
     textDecorationLine: 'underline',
   },
-
-
 })
