@@ -17,6 +17,7 @@ const DetalheProduto = ({navigation}) => {
         <View style={styles.carrinho}>
           <Image style={styles.estrelinha}
             source={require('../assets/img/carrinho.png')}
+            onPress={() => navigation.navigate('Carrinho')}
           />
         </View>
       </View>

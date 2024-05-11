@@ -5,6 +5,7 @@ import Inicial from './app/Inicial';
 import { TabMenu } from './components/TabMenu';
 import Splash from './app/Splash';
 import Cadastro from './app/Cadastro';
+import DetalheProduto from './app/DetalheProduto';
 import Carrinho from './app/Carrinho';
 import Login from './app/Login';
 import Catalogo from './app/Catalogo';
@@ -25,6 +26,11 @@ export default function App() {
             <Stack.Screen
               name="Inicial"
               component={Inicial}
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen
+              name="DetalheProduto"
+              component={DetalheProduto}
               options={{ headerShown: false }}
             />
             <Stack.Screen

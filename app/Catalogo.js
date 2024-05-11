@@ -75,9 +75,9 @@ const Catalogo  = ({navigation}) => {
             <View style={styles.ofertaArea}>
               <Text style={styles.ProdSectionTitle}>Mega Ofertas</Text>
             </View>
-            <View style = {styles.moreArea}>
-              <TouchableOpacity style = {styles.iconSup}>
-                <Text style = {styles.moreTxt}>Saiba mais</Text>
+            <View style = {styles.notArea}>
+              <TouchableOpacity style = {styles.iconSup} onPress={() => navigation.navigate('DetalheProduto')}>
+                <Text>Saiba mais</Text>
               </TouchableOpacity>
             </View>
           </View>
