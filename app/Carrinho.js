@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Text, SafeAreaView, StyleSheet, Image, TouchableOpacity, View, ScrollView, CheckBox } from 'react-native';
-import { Entypo } from '@expo/vector-icons';
 
 const Carrinho = ({ navigation }) => {
   const [carrinho, setCarrinho] = useState([
@@ -58,7 +57,7 @@ const Carrinho = ({ navigation }) => {
               onValueChange={toggleSelecionadoTodos}
               style={[styles.checkbox, selecionadoTodos]}
             />
-        <Text>Selecionar todos</Text>
+        <Text style={{marginLeft: 10}}>Selecionar todos</Text>
       </View>
       <ScrollView>
         {carrinho.map(item => (
@@ -68,7 +67,7 @@ const Carrinho = ({ navigation }) => {
                 value={itensSelecionados.includes(item.id)}
                 onValueChange={() => toggleItemSelecionado(item.id)}
                 style={[styles.checkbox, itensSelecionados.includes(item.id) ? styles.checkboxSelecionado : null]}
-              />
+                />
               <Image source={require('../assets/img/carrinho.png')} style={styles.imagem} />
               <View style={styles.textos}>
                 <Text style={styles.titulo}>{item.nome}</Text>
@@ -84,9 +83,18 @@ const Carrinho = ({ navigation }) => {
         ))}
       </ScrollView>
       <View style={styles.footer}>
-        <Text>Subtotal: R$ {calcularSubtotal()}</Text>
-        <Text>Frete: R$ 5.00</Text>
-        <Text>TOTAL: R$ {calcularSubtotal() != 0 ? calcularSubtotal() + 5 : "5.00"}</Text>
+        <View style={styles.textos}>
+          <Text style={styles.preco}>Subtotal:</Text>
+          <Text style={styles.preco}>R$ {calcularSubtotal()}</Text>
+        </View>
+        <View style={styles.textos}>
+          <Text style={styles.preco}>Frete:</Text>
+          <Text style={styles.preco}>R$ 5.00</Text>
+        </View>
+        <View style={styles.textos}>
+          <Text style={styles.title}>TOTAL:</Text>
+          <Text style={styles.title}>R$ {calcularSubtotal() != 0 ? calcularSubtotal() + 5 : "5.00"}</Text>
+        </View>
         <TouchableOpacity style={styles.botaoPagamento}><Text style={styles.buttonText}>Continuar</Text></TouchableOpacity>
       </View>
     </SafeAreaView>
@@ -108,6 +116,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginBottom: 10,
   },
+  todoscheckbox: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    margin: 10
+  },
   checkbox: {
     width: 22,
     height: 23,
@@ -127,7 +141,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   title: {
-    fontSize: 18
+    fontSize: 16,
+    fontWeight: 700,
+    color: '#424141'
   },
   imagem: {
     width: 50,
@@ -136,13 +152,19 @@ const styles = StyleSheet.create({
   },
   textos: {
     flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginLeft: 10,
+    marginRight: 10,
+    marginBottom: 5,
+    marginTop: 5
   },
   titulo: {
     fontSize: 16,
     fontWeight: 'bold',
   },
   preco: {
-    fontSize: 14,
+    fontSize: 16,
     color: '#888',
   },
   botoesQuantidade: {
