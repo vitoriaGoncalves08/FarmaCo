@@ -33,7 +33,7 @@ const Catalogo  = ({navigation}) => {
           <View style={styles.banner}>
           </View>
           <View style={styles.subBanner}>
-            <Image style={styles.subBannerImg} source={require('../assets/subbanner.png')} />
+            <Image style={styles.subBannerImg} source={require('../assets/img/subbanner.png')} />
           </View>
         </View>
         <View style={styles.rowTags}>
@@ -87,7 +87,7 @@ const Catalogo  = ({navigation}) => {
                 <View style={styles.discountArea}>
                     <Text style={styles.discountTxt}>-10%</Text>
                 </View>
-                <Image style={styles.prodImage} source={require('../assets/remedio.png')} />
+                <Image style={styles.prodImage} source={require('../assets/img/remedio.png')} />
                 <View style={styles.infoProdArea}>
                   <Text style={styles.productName}>Diporrona  Monohidratada</Text>
                   <Text style={styles.productDesc}>Remedio para dores</Text>
@@ -105,7 +105,7 @@ const Catalogo  = ({navigation}) => {
                 <View style={styles.discountArea}>
                     <Text style={styles.discountTxt}>-10%</Text>
                 </View>
-                <Image style={styles.prodImage} source={require('../assets/remedio.png')} />
+                <Image style={styles.prodImage} source={require('../assets/img/remedio.png')} />
                 <View style={styles.infoProdArea}>
                   <Text style={styles.productName}>Diporrona  Monohidratada</Text>
                   <Text style={styles.productDesc}>Remedio para dores</Text>
@@ -123,7 +123,7 @@ const Catalogo  = ({navigation}) => {
                 <View style={styles.discountArea}>
                     <Text style={styles.discountTxt}>-10%</Text>
                 </View>
-                <Image style={styles.prodImage} source={require('../assets/remedio.png')} />
+                <Image style={styles.prodImage} source={require('../assets/img/remedio.png')} />
                 <View style={styles.infoProdArea}>
                   <Text style={styles.productName}>Diporrona Monohidratada</Text>
                   <Text style={styles.productDesc}>Remedio para dores</Text>
@@ -141,7 +141,7 @@ const Catalogo  = ({navigation}) => {
                 <View style={styles.discountArea}>
                     <Text style={styles.discountTxt}>-10%</Text>
                 </View>
-                <Image style={styles.prodImage} source={require('../assets/remedio.png')} />
+                <Image style={styles.prodImage} source={require('../assets/img/remedio.png')} />
                 <View style={styles.infoProdArea}>
                   <Text style={styles.productName}>Diporrona  Monohidratada</Text>
                   <Text style={styles.productDesc}>Remedio para dores</Text>

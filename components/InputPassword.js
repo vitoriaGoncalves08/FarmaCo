@@ -6,10 +6,8 @@ const InputPassword = () => {
       <TextInput
       style={styles.txtinput}
       secureTextEntry={true}
-      placeholder=""
       />
       <TouchableOpacity>
-        <Image style={styles.revealbtn} source={require('../assets/img/reveal.png')} />
       </TouchableOpacity>
     </View>
   );
