@@ -9,6 +9,7 @@ const Cadastro = ({navigation}) => {
         <ScrollView contentContainerStyle={{ flexGrow: 4 }}>
           <View style={styles.column}>
             <TouchableOpacity style={styles.rtn} onPress={() => navigation.navigate("Inicial")}>
+          
             </TouchableOpacity>
             <Text style={styles.mainTxt}>Cadastre-se e conheça nossa variedade de produtos!</Text>
             <Text style={styles.subTxt}>Preencha os dados abaixo para continuar</Text>
