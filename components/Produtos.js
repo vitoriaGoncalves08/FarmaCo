@@ -25,7 +25,7 @@ const Produtos = () => {
           </View>
           <Image
             style={styles.prodImage}
-            source={require("../assets/remedio.png")}
+            source={require('../assets/img/remedio.png')}
           />
           <View style={styles.infoProdArea}>
             <Text style={styles.productName}>Diporrona Monohidratada</Text>
@@ -49,7 +49,7 @@ const Produtos = () => {
           </View>
           <Image
             style={styles.prodImage}
-            source={require("../assets/remedio.png")}
+            source={require('../assets/img/remedio.png')}
           />
           <View style={styles.infoProdArea}>
             <Text style={styles.productName}>Diporrona Monohidratada</Text>
