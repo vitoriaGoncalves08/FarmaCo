@@ -1,13 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Text, SafeAreaView, StyleSheet, Image, View, TouchableOpacity, TextInput, KeyboardAvoidingView, ScrollView } from 'react-native';
+import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 
 const Catalogo  = ({navigation}) => {
 
   return(
-    <SafeAreaView style={styles.container}>
+      <ScrollView contentContainerStyle={styles.scrollViewContent}>
         <View style = {styles.supNot}>
           <View style={styles.hiArea}>
-            <Text style={styles.hiTxt}>Olá, usuário</Text>
+            <Text style={styles.hiTxt}>Ola, usuário</Text>
           </View>
           <View style = {styles.notArea}>
             <TouchableOpacity style = {styles.iconSup}>
@@ -32,13 +33,14 @@ const Catalogo  = ({navigation}) => {
           <View style={styles.banner}>
           </View>
           <View style={styles.subBanner}>
+            <Image style={styles.subBannerImg} source={require('../assets/img/subbanner.png')} />
           </View>
         </View>
         <View style={styles.rowTags}>
           <View style={styles.tagColumn}>
             <View style={styles.tag}>
               <TouchableOpacity style = {styles.tagIcon}>
-                <Image style={styles.kartIcon} source={require('../assets/img/carrinho.png')} />
+                <MaterialCommunityIcons style={styles.remedioIcon} name="pill" size={40} color="#118E96" />
               </TouchableOpacity>
             </View>
             <Text style={styles.tagTxt}>Remédios</Text>
@@ -46,7 +48,7 @@ const Catalogo  = ({navigation}) => {
           <View style={styles.tagColumn}>
             <View style={styles.tag}>
               <TouchableOpacity style = {styles.tagIcon}>
-                <Image style={styles.kartIcon} source={require('../assets/img/carrinho.png')} />
+                <MaterialCommunityIcons style={styles.belezaIcon}  name="lipstick" size={40} color="#118E96" />
               </TouchableOpacity>
             </View>
             <Text style={styles.tagTxt}>Beleza</Text>
@@ -54,7 +56,7 @@ const Catalogo  = ({navigation}) => {
           <View style={styles.tagColumn}>
             <View style={styles.tag}>
               <TouchableOpacity style = {styles.tagIcon}>
-                <Image style={styles.kartIcon} source={require('../assets/img/carrinho.png')} />
+                <MaterialCommunityIcons style={styles.bebeIcon} name="baby-carriage" size={40} color="#118E96" />
               </TouchableOpacity>
             </View>
             <Text style={styles.tagTxt}>Bebê</Text>
@@ -62,51 +64,116 @@ const Catalogo  = ({navigation}) => {
           <View style={styles.tagColumn}>
             <View style={styles.tag}>
               <TouchableOpacity style = {styles.tagIcon}>
-                <Image style={styles.kartIcon} source={require('../assets/img/carrinho.png')} />
+                <MaterialCommunityIcons style={styles.higieneIconIcon} name="shower-head" size={40} color="#118E96" />
               </TouchableOpacity>
             </View>
             <Text style={styles.tagTxt}>Higiene</Text>
           </View>
         </View>
-        <View style = {styles.supNot}>
-            <View style={styles.hiArea}>
-              <Text style={styles.hiTxt}>Mega Ofertas</Text>
+        <View style={styles.catalogArea}>
+          <View style = {styles.prodSection}>
+            <View style={styles.ofertaArea}>
+              <Text style={styles.ProdSectionTitle}>Mega Ofertas</Text>
             </View>
             <View style = {styles.notArea}>
-              <TouchableOpacity style = {styles.iconSup}>
+              <TouchableOpacity style = {styles.iconSup} onPress={() => navigation.navigate('DetalheProduto')}>
                 <Text>Saiba mais</Text>
               </TouchableOpacity>
             </View>
-        </View>
-        <View style={styles.prodRow}>
-          <View style={styles.prodColumn}>
-            <View style={styles.prodBox}>
-            
-            </View>
           </View>
-          <View style={styles.prodColumn}>
-            <View style={styles.prodBox}>
-            
-            </View>
+          <View style={styles.prodRow}>
+          <TouchableOpacity style={styles.cardPress} onPress={() => navigation.navigate('Catalogo')}>
+              <View style={styles.prodBox}>
+                <View style={styles.discountArea}>
+                    <Text style={styles.discountTxt}>-10%</Text>
+                </View>
+                <Image style={styles.prodImage} source={require('../assets/img/remedio.png')} />
+                <View style={styles.infoProdArea}>
+                  <Text style={styles.productName}>Diporrona  Monohidratada</Text>
+                  <Text style={styles.productDesc}>Remedio para dores</Text>
+                  <Text style={styles.productValue}>R$15.00</Text>
+                </View>
+                <View style={styles.btnProductArea}> 
+                  <TouchableOpacity style={styles.btnProduct}>
+                    <Text style={styles.btnProductTxt}>Comprar</Text>
+                  </TouchableOpacity>
+                </View>
+              </View>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.cardPress} onPress={() => navigation.navigate('Catalogo')}>
+              <View style={styles.prodBox}>
+                <View style={styles.discountArea}>
+                    <Text style={styles.discountTxt}>-10%</Text>
+                </View>
+                <Image style={styles.prodImage} source={require('../assets/img/remedio.png')} />
+                <View style={styles.infoProdArea}>
+                  <Text style={styles.productName}>Diporrona  Monohidratada</Text>
+                  <Text style={styles.productDesc}>Remedio para dores</Text>
+                  <Text style={styles.productValue}>R$15.00</Text>
+                </View>
+                <View style={styles.btnProductArea}> 
+                  <TouchableOpacity style={styles.btnProduct}>
+                    <Text style={styles.btnProductTxt}>Comprar</Text>
+                  </TouchableOpacity>
+                </View>
+              </View>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.cardPress} onPress={() => navigation.navigate('Catalogo')}>
+              <View style={styles.prodBox}>
+                <View style={styles.discountArea}>
+                    <Text style={styles.discountTxt}>-10%</Text>
+                </View>
+                <Image style={styles.prodImage} source={require('../assets/img/remedio.png')} />
+                <View style={styles.infoProdArea}>
+                  <Text style={styles.productName}>Diporrona Monohidratada</Text>
+                  <Text style={styles.productDesc}>Remedio para dores</Text>
+                  <Text style={styles.productValue}>R$15.00</Text>
+                </View>
+                <View style={styles.btnProductArea}> 
+                  <TouchableOpacity style={styles.btnProduct}>
+                    <Text style={styles.btnProductTxt}>Comprar</Text>
+                  </TouchableOpacity>
+                </View>
+              </View>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.cardPress} onPress={() => navigation.navigate('Catalogo')}>
+              <View style={styles.prodBox}>
+                <View style={styles.discountArea}>
+                    <Text style={styles.discountTxt}>-10%</Text>
+                </View>
+                <Image style={styles.prodImage} source={require('../assets/img/remedio.png')} />
+                <View style={styles.infoProdArea}>
+                  <Text style={styles.productName}>Diporrona  Monohidratada</Text>
+                  <Text style={styles.productDesc}>Remedio para dores</Text>
+                  <Text style={styles.productValue}>R$15.00</Text>
+                </View>
+                <View style={styles.btnProductArea}> 
+                  <TouchableOpacity style={styles.btnProduct}>
+                    <Text style={styles.btnProductTxt}>Comprar</Text>
+                  </TouchableOpacity>
+                </View>
+              </View>
+            </TouchableOpacity>
           </View>
         </View>
-    </SafeAreaView>
+      </ScrollView>
   );
 }
 
 export default Catalogo;
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1, 
-    alignItems: 'center', 
-    backgroundColor: 'white',
-    padding: 8
+  scrollViewContent: {
+    flexGrow: 1,
+    width: '100%',  
+    justifyContent: 'space-between',
+    backgroundColor: '#F1F1F1'
   },
   supNot: { 
-    width: '95%',
-    marginTop: 15,
-    marginBottom: 15,
+    width: '100%',
+    marginTop: 20,
+    marginBottom: 30,
+    marginHorizontal: 20  ,
     flexDirection: 'row',
     alignContent: 'flex-start',
 
@@ -117,12 +184,13 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   hiTxt: {
-    fontSize: 17,
+    fontSize: 18,
   },
   notArea: {
-    width: '45%',
+    width: '40%',
     flexDirection: 'row',
     justifyContent: 'flex-end',
+
   },
   iconSup: {
     marginRight: 14,
@@ -136,8 +204,8 @@ const styles = StyleSheet.create({
     height: 25,
   },
   columnBanner: {
-    width: '95%',
-    height: '50%',
+    width: '100%',
+    height: '40%',
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -149,14 +217,15 @@ const styles = StyleSheet.create({
     position: 'relative',
   },
   searchBtn:{
-    width: 18,
-    height: 18,
+    width: 20,
+    height: 20,
     position: 'absolute',
-    left:18,
+    left:16,
     marginTop: -9,
+    zIndex: 1,
   },
   txtinput: {
-    width:'96%',
+    width:'94%',
     backgroundColor: '#E3E3E3',
     height: 45,
     borderRadius: 10,
@@ -172,18 +241,23 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   banner: {
-    width: '96%',
-    height: '45%',
+    width: '94%',
+    height: '50%',
     backgroundColor: '#E3E3E3',
     borderRadius: 10,
     marginTop: 10,
   },
   subBanner: {
-    width: '96%',
-    height: '25%',
+    width: '94%',
+    height: '30%',
     backgroundColor: '#E3E3E3',
     borderRadius: 10,
     marginTop: 10,
+  },
+  subBannerImg: {
+    width: '100%',
+    height: '100%',
+    borderRadius: 10,  
   },
   rowTags: {
     width: '100%',
@@ -193,16 +267,16 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   tagColumn: {
-    width:'20%',
-    height:'100%',
+    width:'17%',
+    height:'50%',
     alignItems: 'center',
     justifyContent: 'center',
-    margin: 4,
+    marginHorizontal: 10,
 
   },
   tag: {
     width: '100%',
-    height: '67%',
+    height: '100%',
     margin: 4,
     marginBottom: 0,
     backgroundColor: '#E3E3E3',
@@ -210,37 +284,144 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     borderRadius: 100,
   },
-  tagIcon: {
+  remedioIcon: {
     width: 40, 
     height: 40,
-    marginTop: 16,
-    marginLeft: 16,
+
+  },
+  belezaIcon: {
+    width: 40, 
+    height: 40,
+
+  },
+  bebeIcon: {
+    width: 40, 
+    height: 40,
+
+  },
+  higieneIcon: {
+    width: 40, 
+    height: 40,
+
   },
   tagTxt: {
-    marginTop: 10,
-    fontSize: 14,
+    marginTop: 7,
+    fontSize: 16,
+  },
+  prodSection: {
+      width: '100%',
+      marginTop: 5,
+      marginBottom:0,
+      padding: 10,
+      flexDirection: 'row',
+      alignContent: 'flex-start',
+  
+    },
+  ofertaArea: {
+      width: '55%', 
+      alignContent: 'start',
+      justifyContent: 'center',
+    },
+  ProdSectionTitle: {
+      fontSize: 17,
+      fontWeight: 'bold',
+      marginLeft: 10,
+  },
+  moreArea: {
+    width: '45%',
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+    alignItems: 'flex-end', 
+
+  },
+  moreTxt: {
+    fontSize: 10,
+    fontWeight: 'bold',
+    color: '#A7A7A7',
+    marginLeft: 10,
+  },
+  catalogArea: {
+    width: '100%',
+    alignContent: 'center',
   },
   prodRow: {
     width: '100%',
-    height: '100%',
+    height: '200',
     flexDirection: 'row',
+    flexWrap: 'wrap',
     justifyContent: 'center',
+
   },
-  prodColumn: {
-    width: '45%',
-    height: '100%',
-    backgroundColor: 'blue',
-    margin: 10,
-    marginTop: 5,
-    padding: 5,
-    flexDirection: 'column',
-    justifyContent: 'center',
+  cardPress: {
+    width:'43%',
+    marginVertical:7,
+    marginHorizontal: 7,
   },
   prodBox: {
-    backgroundColor: '#FFFFF',
+    backgroundColor: 'white',
     width:'100%',
-    height:'10%',
+    height: 210,
+    paddingHorizontal: 3,
+    alignItems: 'center',
+    shadowColor:'black',
+    borderRadius: 4,
+    shadowOffset: {
+      width: 0,
+      height: 2  
+    },
+    shadowRadius: 5,
+    shadowOpacity: 0.4,
+  },
+  discountArea: {
+    width:'100%',
+    height: '10%',
+    justifyContent: 'flex-end',
+    alignItems: 'flex-end',
+  },
+  discountTxt: {
+    backgroundColor: 'rgba(112, 149, 18, 0.2)',
+    top: 5,
+    marginTop:2,
+    borderRadius:5,
+    padding: 3,
+    fontWeight: 'bold',
+    color: '#4D8811',
+  
+  },
+  prodImage: {
+    height: '55%',
+    width: '55%'
+  },
+  infoProdArea: {
+    width: '90%'
+  },
+  productName: {
+    fontSize: 11,
+    fontWeight: 'bold',
+    color: '#8A8888'
+  },
+  productDesc: {
+    fontSize: 10,
+    marginBottom: 7,
+    color: '#8A8888'
+  },
+  productValue: {
+    fontSize: 10,
+    color: '#8A8888'
+  },
+  btnProductArea: {
+    width: '90%',
+    alignItems: 'flex-end',
+  },
+  btnProduct: {
+    width: '45%',
+    height: '100%',
+    backgroundColor: '#118E96',
+    alignItems: 'center',
+    borderRadius: 2,
+  },
+  btnProductTxt: {
+    fontSize: 10,
+    color: '#F1F1F1',
   }
-
 })
-

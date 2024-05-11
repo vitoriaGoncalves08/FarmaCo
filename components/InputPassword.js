@@ -6,7 +6,6 @@ const InputPassword = () => {
       <TextInput
       style={styles.txtinput}
       secureTextEntry={true}
-      placeholder=""
       />
       <TouchableOpacity>
       </TouchableOpacity>

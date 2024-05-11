@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Text, SafeAreaView, StyleSheet, Image, TouchableOpacity, View, ScrollView, CheckBox } from 'react-native';
 
 const Carrinho = ({ navigation }) => {
+  
   const [carrinho, setCarrinho] = useState([
     { id: 1, nome: 'Produto 1', preco: 9.99, quantidade: 1 },
     { id: 2, nome: 'Produto 2', preco: 19.99, quantidade: 1 },
@@ -47,6 +48,7 @@ const Carrinho = ({ navigation }) => {
 
 
   return (
+    <>
     <SafeAreaView style={styles.container}>
       <View style={styles.header}>
         <Text style={styles.title}>Carrinho</Text>
@@ -98,6 +100,7 @@ const Carrinho = ({ navigation }) => {
         <TouchableOpacity style={styles.botaoPagamento}><Text style={styles.buttonText}>Continuar</Text></TouchableOpacity>
       </View>
     </SafeAreaView>
+    </>
   );
 }
 

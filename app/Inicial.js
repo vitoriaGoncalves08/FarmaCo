@@ -1,5 +1,6 @@
 import React from 'react';
 import { Text, SafeAreaView, StyleSheet, Image, TouchableOpacity, View } from 'react-native';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 const Inicial = ({ navigation }) => {
   return (
@@ -25,6 +26,7 @@ const Inicial = ({ navigation }) => {
             style={styles.btnLogin}
             onPress={() => navigation.navigate('Cadastro')}>
             <Text style={styles.btnLoginTxt}>Cadastrar minha conta</Text>
+            <MaterialCommunityIcons name="exit-to-app" size={24} color="black" />
           </TouchableOpacity>
         </View>
       </View>
