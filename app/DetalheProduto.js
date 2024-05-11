@@ -4,16 +4,14 @@ import { SafeAreaView, ScrollView } from 'react-native-web';
 import Return from '../components/Return';
 import Botao from '../components/Botao';
 
-const DetalheProduto = () => {
-  const navigation = useNavigation();
-
+const DetalheProduto = ({navigation}) => {
   return (
     <SafeAreaView style={styles.container}>
 
       <View style={styles.topo}>
 
-        <View style={styles.voltar}>
-          <Return href={'Catalogo'} />
+      <View style={styles.voltar}>
+          <Return href={'TabMenu'} /> {/* Alteração aqui */}
         </View>
 
         <View style={styles.carrinho}>
@@ -78,7 +76,6 @@ const DetalheProduto = () => {
       <View style={styles.botaocarrinho}>
         <Botao href={'Carrinho'} textBtn={'Adicionar ao carrinho'} />
       </View>
-
 
     </SafeAreaView>
   );
