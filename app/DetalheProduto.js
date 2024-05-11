@@ -1,8 +1,8 @@
-import { Text, StyleSheet, Button, View, Image } from 'react-native';
+import { Text, StyleSheet, Button, View, Image, SafeAreaView, ScrollView } from 'react-native';
 import { useNavigation } from '@react-navigation/native'
-import { SafeAreaView, ScrollView } from 'react-native-web';
 import Return from '../components/Return';
 import Botao from '../components/Botao';
+import BotaoCarrinho from '../components/BotaoCarrinho';
 
 const DetalheProduto = ({navigation}) => {
   return (
@@ -15,10 +15,7 @@ const DetalheProduto = ({navigation}) => {
         </View>
 
         <View style={styles.carrinho}>
-          <Image style={styles.estrelinha}
-            source={require('../assets/img/carrinho.png')}
-            onPress={() => navigation.navigate('Carrinho')}
-          />
+        <BotaoCarrinho href={'Carrinho'} /> {/* Alteração aqui */}
         </View>
       </View>
       <View style={styles.produtotela}>
