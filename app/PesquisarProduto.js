@@ -23,7 +23,10 @@ const PesquisarProduto  = () => {
           </View>
 
           <View style = {styles.notArea}>
-            <TouchableOpacity style = {styles.iconSup}>
+            <TouchableOpacity 
+              style = {styles.iconSup}
+              onPress={() => navigation.navigate('Carrinho')}
+            >
               <Image style={styles.kartIcon} source={require('../assets/img/carrinho.png')} />
             </TouchableOpacity>
             <TouchableOpacity style = {styles.iconSup}>

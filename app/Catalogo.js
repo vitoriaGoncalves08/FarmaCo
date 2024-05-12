@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { Text, SafeAreaView, StyleSheet, Image, View, TouchableOpacity, TextInput, KeyboardAvoidingView, ScrollView } from 'react-native';
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 
+import { useNavigation } from "@react-navigation/native";
+
 const Catalogo = ({ navigation }) => {
 
   return (
@@ -11,7 +13,10 @@ const Catalogo = ({ navigation }) => {
           <Text style={styles.hiTxt}>Ola, usuário</Text>
         </View>
         <View style={styles.notArea}>
-          <TouchableOpacity style={styles.iconSup}>
+          <TouchableOpacity 
+            style={styles.iconSup}
+            onPress={() => navigation.navigate('Carrinho')}
+          >
             <Image style={styles.kartIcon} source={require('../assets/img/carrinho.png')} />
           </TouchableOpacity>
           <TouchableOpacity style={styles.iconSup}>
