@@ -26,7 +26,7 @@ const Inicial = ({ navigation }) => {
             style={styles.btnLogin}
             onPress={() => navigation.navigate('Cadastro')}>
             <Text style={styles.btnLoginTxt}>Cadastrar minha conta</Text>
-            <MaterialCommunityIcons name="exit-to-app" size={24} color="black" />
+            <MaterialCommunityIcons style={styles.sairIcon} name="exit-to-app" size={24} color="#424141" />
           </TouchableOpacity>
         </View>
       </View>
@@ -117,9 +117,9 @@ const styles = StyleSheet.create({
     fontSize: 13,
   },
   sairIcon: {
-    width: 15,
-    height: 15,
+    width: 10,
+    height: 10,
     marginLeft: 4,
-    marginTop: 2.4,
+    color: '#C0C0C0',
   }
 });

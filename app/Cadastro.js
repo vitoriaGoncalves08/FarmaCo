@@ -1,6 +1,6 @@
 import React from 'react';
 import { Text, SafeAreaView, StyleSheet, Image, View, TouchableOpacity, TextInput, KeyboardAvoidingView, ScrollView } from 'react-native';
-import { useNavigation } from "@react-navigation/native";
+import { FontAwesome5 } from '@expo/vector-icons';
 
 const Cadastro = ({navigation}) => {
   return(
@@ -9,7 +9,7 @@ const Cadastro = ({navigation}) => {
         <ScrollView contentContainerStyle={{ flexGrow: 4 }}>
           <View style={styles.column}>
             <TouchableOpacity style={styles.rtn} onPress={() => navigation.navigate("Inicial")}>
-          
+              <FontAwesome5 name="arrow-left" size={24} color="#424141" style={{margin: 15}}/>
             </TouchableOpacity>
             <Text style={styles.mainTxt}>Cadastre-se e conheça nossa variedade de produtos!</Text>
             <Text style={styles.subTxt}>Preencha os dados abaixo para continuar</Text>

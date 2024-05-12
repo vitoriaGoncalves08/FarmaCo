@@ -17,7 +17,7 @@ const Produtos = () => {
     <View style={styles.prodRow}>
       <TouchableOpacity
         style={styles.cardPress}
-        onPress={() => navigation.navigate("#")}
+        onPress={() => navigation.navigate('DetalheProduto')}
       >
         <View style={styles.prodBox}>
           <View style={styles.discountArea}>
@@ -41,7 +41,7 @@ const Produtos = () => {
       </TouchableOpacity>
       <TouchableOpacity
         style={styles.cardPress}
-        onPress={() => navigation.navigate("#")}
+        onPress={() => navigation.navigate('DetalheProduto')}
       >
         <View style={styles.prodBox}>
           <View style={styles.discountArea}>

@@ -4,8 +4,8 @@ import { Text, SafeAreaView, StyleSheet, Image, TouchableOpacity, View, ScrollVi
 const Carrinho = ({ navigation }) => {
   
   const [carrinho, setCarrinho] = useState([
-    { id: 1, nome: 'Produto 1', preco: 9.99, quantidade: 1 },
-    { id: 2, nome: 'Produto 2', preco: 19.99, quantidade: 1 },
+    { id: 1, nome: 'Diporrona Monohi...', descricao: 'Remedio para dores', preco: 10.00, quantidade: 1 },
+    { id: 2, nome: 'Diporrona Monohi...', descricao: 'Remedio para dores', preco: 15.00, quantidade: 1 },
   ]);
   const [selecionadoTodos, setSelecionadoTodos] = useState(false);
   const [itensSelecionados, setItensSelecionados] = useState([]);
@@ -59,7 +59,7 @@ const Carrinho = ({ navigation }) => {
               onValueChange={toggleSelecionadoTodos}
               style={[styles.checkbox, selecionadoTodos]}
             />
-        <Text style={{marginLeft: 10}}>Selecionar todos</Text>
+        <Text style={{marginLeft: 10, color: '#A7A7A7', fontSize: 16, fontWeight: 600, lineHeight: '120%'}}>Selecionar todos</Text>
       </View>
       <ScrollView>
         {carrinho.map(item => (
@@ -70,15 +70,20 @@ const Carrinho = ({ navigation }) => {
                 onValueChange={() => toggleItemSelecionado(item.id)}
                 style={[styles.checkbox, itensSelecionados.includes(item.id) ? styles.checkboxSelecionado : null]}
                 />
-              <Image source={require('../assets/img/carrinho.png')} style={styles.imagem} />
-              <View style={styles.textos}>
+              <Image source={require('../assets/img/remedio.png')} style={styles.imagem} />
+              <View style={styles.texto}>
                 <Text style={styles.titulo}>{item.nome}</Text>
+                <Text style={styles.descricao}>{item.descricao}</Text>
                 <Text style={styles.preco}>R$ {item.preco}</Text>
               </View>
               <View style={styles.botoesQuantidade}>
-                <TouchableOpacity style={styles.botaoMenos} onPress={() => diminuirQuantidade(item.id)}><Text>-</Text></TouchableOpacity>
+                <TouchableOpacity style={styles.botaoMenos} onPress={() => diminuirQuantidade(item.id)}>
+                  <Text>-</Text>
+                </TouchableOpacity>
                 <Text>{item.quantidade}</Text>
-                <TouchableOpacity style={styles.botaoMais} onPress={() => aumentarQuantidade(item.id)}><Text>+</Text></TouchableOpacity>
+                <TouchableOpacity style={styles.botaoMais} onPress={() => aumentarQuantidade(item.id)}>
+                  <Text style={{color: '#118E96', margin: 0}}>+</Text>
+                </TouchableOpacity>
               </View>
             </View>
           </View>
@@ -109,10 +114,20 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   card: {
-    backgroundColor: '#fff',
+    shadowColor: "#424141",
+    shadowOffset: {
+      width: 0,
+      height: 3,
+    },
+    shadowRadius: 5,
+    shadowOpacity: 0.4,
     margin: 10,
     padding: 10,
     borderRadius: 10,
+    height: 123,
+    display: 'flex',
+    alignItems: 'center',
+    flexDirection: 'row'
   },
   item: {
     flexDirection: 'row',
@@ -130,12 +145,6 @@ const styles = StyleSheet.create({
     height: 23,
     borderRadius: 10,
   },
-  rtnbtn: {
-    width: 20,
-    height: 20,
-    marginBottom: 15,
-    marginLeft: 10,
-  },
   header: {
     marginTop: 10,
     marginBottom: 35,
@@ -144,18 +153,27 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   title: {
-    fontSize: 16,
+    fontSize: 18,
     fontWeight: 700,
     color: '#424141'
   },
   imagem: {
-    width: 50,
-    height: 50,
-    marginRight: 10,
+    width: 60,
+    height: 60,
+    margin: 15,
   },
   textos: {
     flex: 1,
     flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginLeft: 10,
+    marginRight: 10,
+    marginBottom: 5,
+    marginTop: 5
+  },
+  texto: {
+    flex: 1,
+    flexDirection: 'column',
     justifyContent: 'space-between',
     marginLeft: 10,
     marginRight: 10,
@@ -169,6 +187,10 @@ const styles = StyleSheet.create({
   preco: {
     fontSize: 16,
     color: '#888',
+    fontWeight: 600
+  },
+  descricao: {
+    fontSize: 14,
   },
   botoesQuantidade: {
     flexDirection: 'row',
@@ -176,17 +198,26 @@ const styles = StyleSheet.create({
   },
   botaoMenos: {
     borderWidth: 1,
-    borderColor: '#000',
-    borderRadius: 5,
+    borderColor: '#A7A7A7',
+    borderRadius: 10,
     padding: 5,
     marginRight: 5,
+    width: 35,
+    height: 35,
+    justifyContent: 'center',
+    alignItems: 'center', 
   },
   botaoMais: {
     borderWidth: 1,
-    borderColor: '#000',
-    borderRadius: 5,
+    borderRadius: 10,
     padding: 5,
     marginLeft: 5,
+    borderColor:'#118E96',
+    background: '#F1F1F1',
+    width: 35,
+    height: 35,
+    justifyContent: 'center',
+    alignItems: 'center', 
   },
   footer: {
     backgroundColor: '#eee',

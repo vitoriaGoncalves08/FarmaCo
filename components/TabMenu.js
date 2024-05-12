@@ -1,10 +1,8 @@
 import React, { children } from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { StyleSheet, View, TouchableOpacity } from 'react-native';
-import Inicial from '../app/Inicial';
 import Cadastro from '../app/Cadastro';
 import Login from '../app/Login';
-import Splash from '../app/Splash';
 import Catalogo from '../app/Catalogo';
 import Carrinho from '../app/Carrinho';
 import PesquisarProduto from '../app/PesquisarProduto';
@@ -94,7 +92,7 @@ export const TabMenu = () => {
 
             )}
 
-            <Tab.Screen name='Inicial' component={Inicial}
+            <Tab.Screen name='Cadastro' component={Cadastro}
                 options={{
                     tabBarIcon: ({ focused }) => (
                         <View style={{ alignItems: 'center', justifyContent: 'center' }}>
