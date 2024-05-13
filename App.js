@@ -5,7 +5,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import Inicial from './app/Inicial';
 import Cadastro from './app/Cadastro';
 import Login from './app/Login';
-import Catalogo from './app/Catalogo'
+import Catalogo from './app/Catalogo';
 
 const Stack = createNativeStackNavigator();
 

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Text, SafeAreaView, StyleSheet, Image, View, TouchableOpacity, TextInput, KeyboardAvoidingView, ScrollView } from 'react-native';
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
+import MyCarousel from '../components/MyCarousel';
 
 import { useNavigation } from "@react-navigation/native";
 
@@ -34,6 +35,7 @@ const Catalogo  = () => {
             />
           </View>
           <View style={styles.banner}>
+            <MyCarousel/>
           </View>
           <View style={styles.subBanner}>
             <Image style={styles.subBannerImg} source={require('../assets/subbanner.png')} />
@@ -246,7 +248,7 @@ const styles = StyleSheet.create({
   banner: {
     width: '94%',
     height: '50%',
-    backgroundColor: '#E3E3E3',
+    backgroundColor: '#F1F1F1',
     borderRadius: 10,
     marginTop: 10,
   },
@@ -363,7 +365,8 @@ const styles = StyleSheet.create({
   prodBox: {
     backgroundColor: 'white',
     width:'100%',
-    height: 210,
+    height: 'auto',
+    minHeight: 210,
     paddingHorizontal: 3,
     alignItems: 'center',
     shadowColor:'black',
