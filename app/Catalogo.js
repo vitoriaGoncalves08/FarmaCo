@@ -3,10 +3,7 @@ import { Text, SafeAreaView, StyleSheet, Image, View, TouchableOpacity, TextInpu
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 import MyCarousel from '../components/MyCarousel';
 
-import { useNavigation } from "@react-navigation/native";
-
-const Catalogo  = () => {
-  const navigation = useNavigation();
+const Catalogo  = ({navigation}) => {
 
   return(
       <ScrollView contentContainerStyle={styles.scrollViewContent}>
@@ -16,17 +13,17 @@ const Catalogo  = () => {
           </View>
           <View style = {styles.notArea}>
             <TouchableOpacity style = {styles.iconSup}>
-              <Image style={styles.kartIcon} source={require('../assets/carrinho.png')} />
+              <Image style={styles.kartIcon} source={require('../assets/img/carrinho.png')} />
             </TouchableOpacity>
             <TouchableOpacity style = {styles.iconSup}>
-              <Image style={styles.notIcon} source={require('../assets/notification.png')} />
+              <Image style={styles.notIcon} source={require('../assets/img/notification.png')} />
             </TouchableOpacity>
           </View>
         </View>
         <View style = {styles.columnBanner}>
           <View style={styles.inputWithIcon}>
             <TouchableOpacity>
-              <Image style={styles.searchBtn} source={require('../assets/Search.png')} />
+              <Image style={styles.searchBtn} source={require('../assets/img/Search.png')} />
             </TouchableOpacity>
             <TextInput
               style={styles.txtinput}

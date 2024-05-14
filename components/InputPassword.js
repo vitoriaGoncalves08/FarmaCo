@@ -9,7 +9,7 @@ const InputPassword = () => {
       placeholder=""
       />
       <TouchableOpacity>
-        <Image style={styles.revealbtn} source={require('../assets/reveal.png')} />
+        <Image style={styles.revealbtn} source={require('../assets/img/reveal.png')} />
       </TouchableOpacity>
     </View>
   );
