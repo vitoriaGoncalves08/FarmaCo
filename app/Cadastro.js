@@ -1,8 +1,101 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { Text, SafeAreaView, StyleSheet, Image, View, TouchableOpacity, TextInput, KeyboardAvoidingView, ScrollView } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { FontAwesome5 } from '@expo/vector-icons';
 
 const Cadastro = ({navigation}) => {
+  const [nome, setNome] = useState('');
+  const [sobrenome, setSobrenome] = useState('');
+  const [dataNascimento, setDataNascimento] = useState('');
+  const [cpf, setCpf] = useState('');
+  const [endereco, setEndereco] = useState('');
+  const [numero, setNumero] = useState('');
+  const [cep, setCep] = useState('');
+  const [email, setEmail] = useState('');
+  const [senha, setSenha] = useState('');
+  const [erros, setErros] = useState({
+      nome: '',
+      sobrenome: '',
+      dataNascimento: '', 
+      cpf: '',
+      endereco: '',
+      numero: '',
+      cep: '',
+      email: '',
+      senha: '',
+  });
+  
+  const validarCampos = () => {
+    let errosTemp = {};
+
+    if (!nome) {
+        errosTemp.nome = 'Digite seu nome';
+    }
+
+    if (!sobrenome) {
+        errosTemp.sobrenome = 'Digite seu sobrenome';
+    }
+
+    if (!dataNascimento) {
+        errosTemp.dataNascimento = 'Digite sua data de nascimento';
+    }
+    if (!cpf){
+      errosTemp.cpf = 'Digite seu CPF'
+    }w
+    if (!endereco) {
+        errosTemp.endereco = 'Digite seu endereço';
+    }
+
+    if (!numero) {
+        errosTemp.numero = 'Digite o número';
+    }
+
+    if (!cep) {
+        errosTemp.cep = 'Digite o CEP';
+    }
+
+    if (!email) {  
+        errosTemp.cidade = 'Digite o email';
+    }
+
+    if (!senha) {
+        errosTemp.estado = 'Digite a senha';
+    }
+
+    setErros(errosTemp);
+
+    return Object.keys(errosTemp).length === 0;
+  };
+
+  const handleSalvar = async () => {
+    const dados = {
+        id: '0',
+        nome,
+        sobrenome,
+        dataNascimento,
+        cpf,
+        endereco,
+        numero,
+        cep,
+        email,
+        senha,
+
+    };
+
+    if (validarCampos()) {
+        try {
+            dados.id = Math.floor(Math.random() * 10000) + '';
+            await AsyncStorage.setItem(dados.id, JSON.stringify(dados), () => {
+                console.warn('Dados salvos no AsyncStorage com sucesso!');
+                navigation.navigate('Login', {dados});
+            });
+        } catch (error) {
+            console.warn('Erro ao salvar os dados no AsyncStorage:', error);
+        }
+    }
+  };
+
+  
   return(
     <SafeAreaView style={styles.container}>
       <KeyboardAvoidingView style={{ flex: 4 }} behavior="padding">
@@ -13,24 +106,55 @@ const Cadastro = ({navigation}) => {
             </TouchableOpacity>
             <Text style={styles.mainTxt}>Cadastre-se e conheça nossa variedade de produtos!</Text>
             <Text style={styles.subTxt}>Preencha os dados abaixo para continuar</Text>
+            {erros.nome !== '' ? <Text style={styles.erro}>{erros.nome}</Text> : <Text></Text>}
             <Text style={styles.inputTxt}>Nome</Text>
             <View style={styles.txtArea}>
-              <TextInput style={styles.txtinput} placeholder=""/>
+              <TextInput onChangeText={setNome}  value={nome} style={styles.txtinput} placeholder=""/>
             </View>
-            <Text style={styles.inputTxt}>E-mail</Text>
+            {erros.sobrenome !== '' ? <Text style={styles.erro}>{erros.sobrenome}</Text> : <Text></Text>}
+            <Text style={styles.inputTxt}>Sobrenome</Text>
             <View style={styles.txtArea}>
-              <TextInput style={styles.txtinput} placeholder=""/>
+              <TextInput onChangeText={setSobrenome} value={sobrenome} style={styles.txtinput} placeholder=""/>
             </View>
+            {erros.dataNascimento !== '' ? <Text style={styles.erro}>{erros.dataNascimento}</Text> : <Text></Text>}
+            <Text style={styles.inputTxt}>Data de nascimento</Text>
+            <View style={styles.txtArea}>
+              <TextInput maxLength={10} onChangeText={setDataNascimento} value={dataNascimento} style={styles.txtinput} placeholder="  /  /    "/>
+            </View>
+            {erros.cpf !== '' ? <Text style={styles.erro}>{erros.cpf}</Text> : <Text></Text>}
             <Text style={styles.inputTxt}>CPF</Text>
             <View style={styles.txtArea}>
-              <TextInput style={styles.txtinput} placeholder=""/>
+              <TextInput maxLength={14} onChangeText={setCpf} value={cpf} style={styles.txtinput} placeholder=""/>
             </View>
+            {erros.endereco !== '' ? <Text style={styles.erro}>{erros.endereco}</Text> : <Text></Text>}
+            <Text style={styles.inputTxt}>Endereço</Text>
+            <View style={styles.txtArea}>
+              <TextInput onChangeText={setEndereco} value={endereco} style={styles.txtinput} placeholder=""/>
+            </View>
+            {erros.numero !== '' ? <Text style={styles.erro}>{erros.numero}</Text> : <Text></Text>}
+            <Text style={styles.inputTxt}>Número</Text>
+            <View style={styles.txtArea}>
+              <TextInput onChangeText={setNumero} value={numero} style={styles.txtinput} placeholder=""/>
+            </View>
+            {erros.cep !== '' ? <Text style={styles.erro}>{erros.cep}</Text> : <Text></Text>}
+            <Text style={styles.inputTxt}>CEP</Text>
+            <View style={styles.txtArea}>
+              <TextInput onChangeText={setCep} value={cep} style={styles.txtinput} placeholder=""/>
+            </View>
+            {erros.email !== '' ? <Text style={styles.erro}>{erros.email}</Text> : <Text></Text>}
+            <Text style={styles.inputTxt}>E-mail</Text>
+            <View style={styles.txtArea}>
+              <TextInput keyboardType="email-address" onChangeText={setEmail}  value={email} style={styles.txtinput} placeholder=""/>
+            </View>
+            {erros.senha !== '' ? <Text style={styles.erro}>{erros.senha}</Text> : <Text></Text>}
             <Text style={styles.inputTxt}>Senha</Text>
             <View style={styles.inputWithIcon}>
-              <TextInput
+              <TextInput 
+                onChangeText={setSenha}
                 style={styles.txtinput}
                 secureTextEntry={true}
                 placeholder=""
+                value={senha}
               />
               <TouchableOpacity>
               </TouchableOpacity>
@@ -52,7 +176,7 @@ const Cadastro = ({navigation}) => {
               </TouchableOpacity>
             </View>
             <View style={styles.loginBtnArea}>
-              <TouchableOpacity style={styles.btnEnter} onPress={() => navigation.navigate("Login")}>
+              <TouchableOpacity style={styles.btnEnter} onPress={handleSalvar}>
                 <Text style={styles.buttonText}>Continuar</Text>
               </TouchableOpacity>
             </View>
@@ -98,6 +222,10 @@ const styles = StyleSheet.create({
     color: '#b5b5b5',
     
   },
+  erro: {
+    color: 'red',
+    marginBottom: 5,
+  },
   inputTxt: {
     fontSize:14,
     marginBottom: 5,
@@ -115,7 +243,8 @@ const styles = StyleSheet.create({
     borderColor: '#CCCCCE',
     color: '#4F4F4F',
     marginBottom: 0,
-    outline: 'none',
+    outlineStyle: "none",
+    placeholderTextColor: "#A7A7A7"
   },
   txtArea: {
     width: '100%',
@@ -158,15 +287,17 @@ const styles = StyleSheet.create({
   loginBtnArea: {
     width: '100%',
     alignItems: 'center',
+    justifyContent: 'center'
   },
   btnEnter: {
     width: '95%',
-    top: 40,
     height: 45,
     borderRadius: 20,
     backgroundColor: '#118E96',
     justifyContent: 'center',
     margin: 10,
+    marginBottom: 95,
+
   },
   buttonText:{
     color: 'white',
