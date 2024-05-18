@@ -1,29 +1,103 @@
 import React from 'react';
 import { Text, SafeAreaView, StyleSheet, Image, View, TouchableOpacity, TextInput, KeyboardAvoidingView, ScrollView } from 'react-native';
 import { FontAwesome5 } from '@expo/vector-icons';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const Cadastro = ({navigation}) => {
-  return(
+const Cadastro = ({ navigation }) => {
+
+  const [nome, setNome] = useState('');
+  const [cpf, setcpf] = useState('');
+  const [email, setemail] = useState('');
+  const [senha, setsenha] = useState('');
+  const [erros, setErros] = useState({
+
+    nome: '',
+    cpf: '',
+    email: '',
+    senha: '',
+
+  });
+
+  const validarCampos = () => {
+    let errosTemp = {};
+
+    if (!nome) {
+      errosTemp.nome = 'Digite seu nome';
+    }
+
+    if (!cpf) {
+      errosTemp.sobrenome = 'Digite seu CPF';
+    }
+
+
+    if (!email) {
+      errosTemp.endereco = 'Digite seu endereço de e-mail';
+    }
+
+    if (!numero) {
+      errosTemp.numero = 'Digite o número';
+    }
+
+    if (!senha) {
+      errosTemp.cep = 'Digite a sua senha';
+    }
+
+    setErros(errosTemp);
+
+    return Object.keys(errosTemp).length === 0;
+  };
+
+  const handleSalvar = async () => {
+    const dados = {
+        id: '0',
+        nome,
+        cpf,
+        email,
+        senha,
+    };
+    
+    if (validarCampos()) {
+      try {
+          dados.id = Math.floor(Math.random() * 10000) + '';
+          await AsyncStorage.setItem(dados.id, JSON.stringify(dados), () => {
+              console.warn('Dados salvos no AsyncStorage com sucesso!');
+              navigation.navigate('MostrarDados', {dados});
+          });
+      } catch (error) {
+          console.warn('Erro ao salvar os dados no AsyncStorage:', error);
+      }
+  }
+};
+
+
+  return (
     <SafeAreaView style={styles.container}>
       <KeyboardAvoidingView style={{ flex: 4 }} behavior="padding">
         <ScrollView contentContainerStyle={{ flexGrow: 4 }}>
           <View style={styles.column}>
             <TouchableOpacity style={styles.rtn} onPress={() => navigation.navigate("Inicial")}>
-              <FontAwesome5 name="arrow-left" size={24} color="#424141" style={{margin: 15}}/>
+              <FontAwesome5 name="arrow-left" size={24} color="#424141" style={{ margin: 15 }} />
             </TouchableOpacity>
             <Text style={styles.mainTxt}>Cadastre-se e conheça nossa variedade de produtos!</Text>
             <Text style={styles.subTxt}>Preencha os dados abaixo para continuar</Text>
+
             <Text style={styles.inputTxt}>Nome</Text>
             <View style={styles.txtArea}>
-              <TextInput style={styles.txtinput} placeholder=""/>
+              <TextInput 
+              style={styles.txtinput}
+              placeholder=""
+              value={nome}
+              onChangeText={setnome}
+                />
             </View>
+
             <Text style={styles.inputTxt}>E-mail</Text>
             <View style={styles.txtArea}>
-              <TextInput style={styles.txtinput} placeholder=""/>
+              <TextInput style={styles.txtinput} placeholder="" />
             </View>
             <Text style={styles.inputTxt}>CPF</Text>
             <View style={styles.txtArea}>
-              <TextInput style={styles.txtinput} placeholder=""/>
+              <TextInput style={styles.txtinput} placeholder="" />
             </View>
             <Text style={styles.inputTxt}>Senha</Text>
             <View style={styles.inputWithIcon}>
@@ -72,41 +146,41 @@ const styles = StyleSheet.create({
     padding: 8
   },
   column: {
-    marginTop:5,
+    marginTop: 5,
     width: '100%',
     marginLeft: 0,
     height: 'stretch',
     padding: 10,
   },
-  rtnbtn:{
+  rtnbtn: {
     width: 20,
     height: 20,
     marginBottom: 15,
-    marginLeft: 10, 
+    marginLeft: 10,
   },
   mainTxt: {
     fontSize: 20,
     fontWeight: 'bold',
     marginBottom: 10,
-    marginLeft: 10, 
+    marginLeft: 10,
   },
   subTxt: {
-    fontSize:16,
+    fontSize: 16,
     marginBottom: 8,
     marginLeft: 10,
     marginTop: 8,
     color: '#b5b5b5',
-    
+
   },
   inputTxt: {
-    fontSize:14,
+    fontSize: 14,
     marginBottom: 5,
     marginLeft: 10,
     marginTop: 10,
     color: '#b5b5b5',
   },
   txtinput: {
-    width:'98%',
+    width: '98%',
     backgroundColor: '#E3E3E3',
     height: 45,
     borderRadius: 13,
@@ -128,11 +202,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     position: 'relative',
   },
-  revealbtn:{
+  revealbtn: {
     width: 18,
     height: 18,
     position: 'absolute',
-    right:12,
+    right: 12,
     marginTop: -9,
   },
   loginArea: {
@@ -168,7 +242,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     margin: 10,
   },
-  buttonText:{
+  buttonText: {
     color: 'white',
     textAlign: 'center',
     fontSize: 16,
