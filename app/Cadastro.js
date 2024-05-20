@@ -1,309 +1,429 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import { Text, SafeAreaView, StyleSheet, Image, View, TouchableOpacity, TextInput, KeyboardAvoidingView, ScrollView } from 'react-native';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import { FontAwesome5 } from '@expo/vector-icons';
+import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 
-const Cadastro = ({navigation}) => {
-  const [nome, setNome] = useState('');
-  const [sobrenome, setSobrenome] = useState('');
-  const [dataNascimento, setDataNascimento] = useState('');
-  const [cpf, setCpf] = useState('');
-  const [endereco, setEndereco] = useState('');
-  const [numero, setNumero] = useState('');
-  const [cep, setCep] = useState('');
-  const [email, setEmail] = useState('');
-  const [senha, setSenha] = useState('');
-  const [erros, setErros] = useState({
-      nome: '',
-      sobrenome: '',
-      dataNascimento: '', 
-      cpf: '',
-      endereco: '',
-      numero: '',
-      cep: '',
-      email: '',
-      senha: '',
-  });
-  
-  const validarCampos = () => {
-    let errosTemp = {};
+import { useNavigation } from "@react-navigation/native";
 
-    if (!nome) {
-        errosTemp.nome = 'Digite seu nome';
-    }
+const Catalogo = ({ navigation }) => {
 
-    if (!sobrenome) {
-        errosTemp.sobrenome = 'Digite seu sobrenome';
-    }
-
-    if (!dataNascimento) {
-        errosTemp.dataNascimento = 'Digite sua data de nascimento';
-    }
-    if (!cpf){
-      errosTemp.cpf = 'Digite seu CPF'
-    }w
-    if (!endereco) {
-        errosTemp.endereco = 'Digite seu endereço';
-    }
-
-    if (!numero) {
-        errosTemp.numero = 'Digite o número';
-    }
-
-    if (!cep) {
-        errosTemp.cep = 'Digite o CEP';
-    }
-
-    if (!email) {  
-        errosTemp.cidade = 'Digite o email';
-    }
-
-    if (!senha) {
-        errosTemp.estado = 'Digite a senha';
-    }
-
-    setErros(errosTemp);
-
-    return Object.keys(errosTemp).length === 0;
-  };
-
-  const handleSalvar = async () => {
-    const dados = {
-        id: '0',
-        nome,
-        sobrenome,
-        dataNascimento,
-        cpf,
-        endereco,
-        numero,
-        cep,
-        email,
-        senha,
-
-    };
-
-    if (validarCampos()) {
-        try {
-            dados.id = Math.floor(Math.random() * 10000) + '';
-            await AsyncStorage.setItem(dados.id, JSON.stringify(dados), () => {
-                console.warn('Dados salvos no AsyncStorage com sucesso!');
-                navigation.navigate('Login', {dados});
-            });
-        } catch (error) {
-            console.warn('Erro ao salvar os dados no AsyncStorage:', error);
-        }
-    }
-  };
-
-  
-  return(
-    <SafeAreaView style={styles.container}>
-      <KeyboardAvoidingView style={{ flex: 4 }} behavior="padding">
-        <ScrollView contentContainerStyle={{ flexGrow: 4 }}>
-          <View style={styles.column}>
-            <TouchableOpacity style={styles.rtn} onPress={() => navigation.navigate("Inicial")}>
-              <FontAwesome5 name="arrow-left" size={24} color="#424141" style={{margin: 15}}/>
+  return (
+    <ScrollView contentContainerStyle={styles.scrollViewContent}>
+      <View style={styles.supNot}>
+        <View style={styles.hiArea}>
+          <Text style={styles.hiTxt}>Ola, usuário</Text>
+        </View>
+        <View style={styles.notArea}>
+          <TouchableOpacity 
+            style={styles.iconSup}
+            onPress={() => navigation.navigate('Carrinho')}
+            >
+            <Image style={styles.kartIcon} source={require('../assets/img/carrinho.png')} />
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.iconSup}>
+            <Image style={styles.notIcon} source={require('../assets/img/notification.png')} />
+          </TouchableOpacity>
+        </View>
+      </View>
+      <View style={styles.columnBanner}>
+        <View style={styles.inputWithIcon}>
+          <TouchableOpacity>
+            <Image style={styles.searchBtn} source={require('../assets/img/Search.png')} />
+          </TouchableOpacity>
+          <TextInput
+            style={styles.txtinput}
+            placeholder="Busque seu produto"
+            placeholderStyle={styles.placeholder}
+          />
+        </View>
+        <View style={styles.banner}>
+        </View>
+        <View style={styles.subBanner}>
+          <Image style={styles.subBannerImg} source={require('../assets/img/subbanner.png')} />
+        </View>
+      </View>
+      <View style={styles.rowTags}>
+        <View style={styles.tagColumn}>
+          <View style={styles.tag}>
+            <TouchableOpacity style={styles.tagIcon}>
+              <MaterialCommunityIcons style={styles.remedioIcon} name="pill" size={40} color="#118E96" />
             </TouchableOpacity>
-            <Text style={styles.mainTxt}>Cadastre-se e conheça nossa variedade de produtos!</Text>
-            <Text style={styles.subTxt}>Preencha os dados abaixo para continuar</Text>
-            {erros.nome !== '' ? <Text style={styles.erro}>{erros.nome}</Text> : <Text></Text>}
-            <Text style={styles.inputTxt}>Nome</Text>
-            <View style={styles.txtArea}>
-              <TextInput onChangeText={setNome}  value={nome} style={styles.txtinput} placeholder=""/>
-            </View>
-            {erros.sobrenome !== '' ? <Text style={styles.erro}>{erros.sobrenome}</Text> : <Text></Text>}
-            <Text style={styles.inputTxt}>Sobrenome</Text>
-            <View style={styles.txtArea}>
-              <TextInput onChangeText={setSobrenome} value={sobrenome} style={styles.txtinput} placeholder=""/>
-            </View>
-            {erros.dataNascimento !== '' ? <Text style={styles.erro}>{erros.dataNascimento}</Text> : <Text></Text>}
-            <Text style={styles.inputTxt}>Data de nascimento</Text>
-            <View style={styles.txtArea}>
-              <TextInput maxLength={10} onChangeText={setDataNascimento} value={dataNascimento} style={styles.txtinput} placeholder="  /  /    "/>
-            </View>
-            {erros.cpf !== '' ? <Text style={styles.erro}>{erros.cpf}</Text> : <Text></Text>}
-            <Text style={styles.inputTxt}>CPF</Text>
-            <View style={styles.txtArea}>
-              <TextInput maxLength={14} onChangeText={setCpf} value={cpf} style={styles.txtinput} placeholder=""/>
-            </View>
-            {erros.endereco !== '' ? <Text style={styles.erro}>{erros.endereco}</Text> : <Text></Text>}
-            <Text style={styles.inputTxt}>Endereço</Text>
-            <View style={styles.txtArea}>
-              <TextInput onChangeText={setEndereco} value={endereco} style={styles.txtinput} placeholder=""/>
-            </View>
-            {erros.numero !== '' ? <Text style={styles.erro}>{erros.numero}</Text> : <Text></Text>}
-            <Text style={styles.inputTxt}>Número</Text>
-            <View style={styles.txtArea}>
-              <TextInput onChangeText={setNumero} value={numero} style={styles.txtinput} placeholder=""/>
-            </View>
-            {erros.cep !== '' ? <Text style={styles.erro}>{erros.cep}</Text> : <Text></Text>}
-            <Text style={styles.inputTxt}>CEP</Text>
-            <View style={styles.txtArea}>
-              <TextInput onChangeText={setCep} value={cep} style={styles.txtinput} placeholder=""/>
-            </View>
-            {erros.email !== '' ? <Text style={styles.erro}>{erros.email}</Text> : <Text></Text>}
-            <Text style={styles.inputTxt}>E-mail</Text>
-            <View style={styles.txtArea}>
-              <TextInput keyboardType="email-address" onChangeText={setEmail}  value={email} style={styles.txtinput} placeholder=""/>
-            </View>
-            {erros.senha !== '' ? <Text style={styles.erro}>{erros.senha}</Text> : <Text></Text>}
-            <Text style={styles.inputTxt}>Senha</Text>
-            <View style={styles.inputWithIcon}>
-              <TextInput 
-                onChangeText={setSenha}
-                style={styles.txtinput}
-                secureTextEntry={true}
-                placeholder=""
-                value={senha}
-              />
-              <TouchableOpacity>
-              </TouchableOpacity>
-            </View>
-            <Text style={styles.inputTxt}>Confirmar senha</Text>
-            <View style={styles.inputWithIcon}>
-              <TextInput
-                style={styles.txtinput}
-                secureTextEntry={true}
-                placeholder=""
-              />
-              <TouchableOpacity>
-              </TouchableOpacity>
-            </View>
-            <View style={styles.loginArea}>
-              <Text style={styles.loginTxt}>Já tem conta?</Text>
-              <TouchableOpacity style={styles.loginBtn} onPress={() => navigation.navigate("Login")}>
-                <Text style={styles.loginBtnTxt}>Entrar.</Text>
-              </TouchableOpacity>
-            </View>
-            <View style={styles.loginBtnArea}>
-              <TouchableOpacity style={styles.btnEnter} onPress={handleSalvar}>
-                <Text style={styles.buttonText}>Continuar</Text>
-              </TouchableOpacity>
-            </View>
           </View>
-        </ScrollView>
-      </KeyboardAvoidingView>
-    </SafeAreaView>
+          <Text style={styles.tagTxt}>Remédios</Text>
+        </View>
+        <View style={styles.tagColumn}>
+          <View style={styles.tag}>
+            <TouchableOpacity style={styles.tagIcon}>
+              <MaterialCommunityIcons style={styles.belezaIcon} name="lipstick" size={40} color="#118E96" />
+            </TouchableOpacity>
+          </View>
+          <Text style={styles.tagTxt}>Beleza</Text>
+        </View>
+        <View style={styles.tagColumn}>
+          <View style={styles.tag}>
+            <TouchableOpacity style={styles.tagIcon}>
+              <MaterialCommunityIcons style={styles.bebeIcon} name="baby-carriage" size={40} color="#118E96" />
+            </TouchableOpacity>
+          </View>
+          <Text style={styles.tagTxt}>Bebê</Text>
+        </View>
+        <View style={styles.tagColumn}>
+          <View style={styles.tag}>
+            <TouchableOpacity style={styles.tagIcon}>
+              <MaterialCommunityIcons style={styles.higieneIconIcon} name="shower-head" size={40} color="#118E96" />
+            </TouchableOpacity>
+          </View>
+          <Text style={styles.tagTxt}>Higiene</Text>
+        </View>
+      </View>
+      <View style={styles.catalogArea}>
+        <View style={styles.prodSection}>
+          <View style={styles.ofertaArea}>
+            <Text style={styles.ProdSectionTitle}>Mega Ofertas</Text>
+          </View>
+          <View style={styles.notArea}>
+            <Text>Saiba mais</Text>
+          </View>
+        </View>
+        <View style={styles.prodRow}>
+          <TouchableOpacity style={styles.cardPress} onPress={() => navigation.navigate('DetalheProduto')}>
+            <View style={styles.prodBox}>
+              <View style={styles.discountArea}>
+                <Text style={styles.discountTxt}>-10%</Text>
+              </View>
+              <Image style={styles.prodImage} source={require('../assets/img/remedio.png')} />
+              <View style={styles.infoProdArea}>
+                <Text style={styles.productName}>Diporrona  Monohidratada</Text>
+                <Text style={styles.productDesc}>Remedio para dores</Text>
+                <Text style={styles.productValue}>R$15.00</Text>
+              </View>
+              <View style={styles.btnProductArea}>
+                <TouchableOpacity style={styles.btnProduct}>
+                  <Text style={styles.btnProductTxt}>Comprar</Text>
+                </TouchableOpacity>
+              </View>
+            </View>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.cardPress} onPress={() => navigation.navigate('DetalheProduto')}>
+            <View style={styles.prodBox}>
+              <View style={styles.discountArea}>
+                <Text style={styles.discountTxt}>-10%</Text>
+              </View>
+              <Image style={styles.prodImage} source={require('../assets/img/remedio.png')} />
+              <View style={styles.infoProdArea}>
+                <Text style={styles.productName}>Diporrona  Monohidratada</Text>
+                <Text style={styles.productDesc}>Remedio para dores</Text>
+                <Text style={styles.productValue}>R$15.00</Text>
+              </View>
+              <View style={styles.btnProductArea}>
+                <TouchableOpacity style={styles.btnProduct}>
+                  <Text style={styles.btnProductTxt}>Comprar</Text>
+                </TouchableOpacity>
+              </View>
+            </View>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.cardPress} onPress={() => navigation.navigate('DetalheProduto')}>
+            <View style={styles.prodBox}>
+              <View style={styles.discountArea}>
+                <Text style={styles.discountTxt}>-10%</Text>
+              </View>
+              <Image style={styles.prodImage} source={require('../assets/img/remedio.png')} />
+              <View style={styles.infoProdArea}>
+                <Text style={styles.productName}>Diporrona Monohidratada</Text>
+                <Text style={styles.productDesc}>Remedio para dores</Text>
+                <Text style={styles.productValue}>R$15.00</Text>
+              </View>
+              <View style={styles.btnProductArea}>
+                <TouchableOpacity style={styles.btnProduct}>
+                  <Text style={styles.btnProductTxt}>Comprar</Text>
+                </TouchableOpacity>
+              </View>
+            </View>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.cardPress} onPress={() => navigation.navigate('DetalheProduto')}>
+            <View style={styles.prodBox}>
+              <View style={styles.discountArea}>
+                <Text style={styles.discountTxt}>-10%</Text>
+              </View>
+              <Image style={styles.prodImage} source={require('../assets/img/remedio.png')} />
+              <View style={styles.infoProdArea}>
+                <Text style={styles.productName}>Diporrona  Monohidratada</Text>
+                <Text style={styles.productDesc}>Remedio para dores</Text>
+                <Text style={styles.productValue}>R$15.00</Text>
+              </View>
+              <View style={styles.btnProductArea}>
+                <TouchableOpacity style={styles.btnProduct}>
+                  <Text style={styles.btnProductTxt}>Comprar</Text>
+                </TouchableOpacity>
+              </View>
+            </View>
+          </TouchableOpacity>
+        </View>
+      </View>
+    </ScrollView>
   );
 }
 
+export default Catalogo;
+
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
+  scrollViewContent: {
+    flexGrow: 1,
+    justifyContent: 'space-between',
+    backgroundColor: '#F1F1F1'
+  },
+  supNot: {
+    width: '100%',
+    marginTop: 45,
+    marginBottom: 25,
+    marginHorizontal: 20,
+    flexDirection: 'row',
+    alignContent: 'flex-start',
+
+  },
+  hiArea: {
+    width: '55%',
+    alignContent: 'start',
     justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'white',
-    padding: 8
   },
-  column: {
-    marginTop:5,
+  hiTxt: {
+    fontSize: 18,
+  },
+  notArea: {
+    width: '40%',
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+
+  },
+  iconSup: {
+    marginRight: 14,
+  },
+  kartIcon: {
+    width: 25,
+    height: 25,
+  },
+  notIcon: {
+    width: 25,
+    height: 25,
+  },
+  columnBanner: {
     width: '100%',
-    marginLeft: 0,
-    height: 'stretch',
-    padding: 10,
-  },
-  rtnbtn:{
-    width: 20,
-    height: 20,
-    marginBottom: 15,
-    marginLeft: 10, 
-  },
-  mainTxt: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    marginBottom: 10,
-    marginLeft: 10, 
-  },
-  subTxt: {
-    fontSize:16,
-    marginBottom: 8,
-    marginLeft: 10,
-    marginTop: 8,
-    color: '#b5b5b5',
-    
-  },
-  erro: {
-    color: 'red',
-    marginBottom: 5,
-  },
-  inputTxt: {
-    fontSize:14,
-    marginBottom: 5,
-    marginLeft: 10,
-    marginTop: 10,
-    color: '#b5b5b5',
-  },
-  txtinput: {
-    width:'98%',
-    backgroundColor: '#E3E3E3',
-    height: 45,
-    borderRadius: 13,
-    paddingLeft: 14,
-    borderWidth: 0.5,
-    borderColor: '#CCCCCE',
-    color: '#4F4F4F',
-    marginBottom: 0,
-    outlineStyle: "none",
-    placeholderTextColor: "#A7A7A7"
-  },
-  txtArea: {
-    width: '100%',
-    height: '45',
+    height: '40%',
     alignItems: 'center',
+    justifyContent: 'center',
   },
   inputWithIcon: {
+    width: '100%',
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
     position: 'relative',
   },
-  revealbtn:{
-    width: 18,
-    height: 18,
-    position: 'absolute',
-    right:12,
-    marginTop: -9,
-  },
-  loginArea: {
-    flexDirection: 'row',
-    marginTop: 0,
-    marginRight: 17,
-    justifyContent: 'flex-end',
-    backgroundColor: 'white',
-    width: 'stretch',
+  searchBtn: {
+    width: 20,
     height: 20,
+    position: 'absolute',
+    left: 16,
+    marginTop: -9,
+    zIndex: 1,
   },
-  loginTxt: {
-    fontSize: 13,
-    color: '#b5b5b5',
-  },
-  loginBtn: {
-    marginLeft: 2,
-  },
-  loginBtnTxt: {
-    fontSize: 13,
-    color: '#118E96',
-  },
-  loginBtnArea: {
-    width: '100%',
-    alignItems: 'center',
-    justifyContent: 'center'
-  },
-  btnEnter: {
-    width: '95%',
+  txtinput: {
+    width: '94%',
+    backgroundColor: '#E3E3E3',
     height: 45,
-    borderRadius: 20,
-    backgroundColor: '#118E96',
+    borderRadius: 10,
+    paddingLeft: 50,
+    borderWidth: 0,
+    borderColor: '#CCCCCE',
+    color: '#4F4F4F',
+    marginBottom: 0,
+    outline: 'none',
+    placeholderTextColor: "#A7A7A7"
+  },
+  placeholder: {
+    fontWeight: 'bold',
+  },
+  banner: {
+    width: '94%',
+    height: '50%',
+    backgroundColor: '#E3E3E3',
+    borderRadius: 10,
+    marginTop: 10,
+  },
+  subBanner: {
+    width: '94%',
+    height: '30%',
+    backgroundColor: '#E3E3E3',
+    borderRadius: 10,
+    marginTop: 10,
+  },
+  subBannerImg: {
+    width: '100%',
+    height: '100%',
+    borderRadius: 10,
+  },
+  rowTags: {
+    width: '100%',
+    height: '15%',
+    flexDirection: 'row',
+    alignItems: 'center',
     justifyContent: 'center',
-    margin: 10,
-    marginBottom: 95,
+  },
+  tagColumn: {
+    width: '17%',
+    height: '50%',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginHorizontal: 10,
 
   },
-  buttonText:{
-    color: 'white',
-    textAlign: 'center',
+  tag: {
+    width: '100%',
+    height: '100%',
+    margin: 4,
+    marginBottom: 0,
+    backgroundColor: '#E3E3E3',
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 100,
+  },
+  remedioIcon: {
+    width: 40,
+    height: 40,
+
+  },
+  belezaIcon: {
+    width: 40,
+    height: 40,
+
+  },
+  bebeIcon: {
+    width: 40,
+    height: 40,
+
+  },
+  higieneIcon: {
+    width: 40,
+    height: 40,
+
+  },
+  tagTxt: {
+    marginTop: 7,
     fontSize: 16,
   },
-});
+  prodSection: {
+    width: '100%',
+    marginTop: 5,
+    marginBottom: 0,
+    padding: 10,
+    flexDirection: 'row',
+    alignContent: 'flex-start',
 
-export default Cadastro;
+  },
+  ofertaArea: {
+    width: '55%',
+    alignContent: 'start',
+    justifyContent: 'center',
+  },
+  ProdSectionTitle: {
+    fontSize: 17,
+    fontWeight: 'bold',
+    marginLeft: 10,
+  },
+  moreArea: {
+    width: '45%',
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+    alignItems: 'flex-end',
+
+  },
+  moreTxt: {
+    fontSize: 10,
+    fontWeight: 'bold',
+    color: '#A7A7A7',
+    marginLeft: 10,
+  },
+  catalogArea: {
+    width: '100%',
+    alignContent: 'center',
+  },
+  prodRow: {
+    width: '100%',
+    height: '200',
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'center',
+
+  },
+  cardPress: {
+    width: '43%',
+    marginVertical: 7,
+    marginHorizontal: 7,
+  },
+  prodBox: {
+    backgroundColor: 'white',
+    width: '100%',
+    height: 210,
+    paddingHorizontal: 3,
+    alignItems: 'center',
+    shadowColor: 'black',
+    borderRadius: 4,
+    shadowOffset: {
+      width: 0,
+      height: 2
+    },
+    shadowRadius: 5,
+    shadowOpacity: 0.4,
+  },
+  discountArea: {
+    width: '100%',
+    height: '10%',
+    justifyContent: 'flex-end',
+    alignItems: 'flex-end',
+  },
+  discountTxt: {
+    backgroundColor: 'rgba(112, 149, 18, 0.2)',
+    top: 5,
+    marginTop: 2,
+    borderRadius: 5,
+    padding: 3,
+    fontWeight: 'bold',
+    color: '#4D8811',
+
+  },
+  prodImage: {
+    height: '55%',
+    width: '55%'
+  },
+  infoProdArea: {
+    width: '90%'
+  },
+  productName: {
+    fontSize: 11,
+    fontWeight: 'bold',
+    color: '#8A8888'
+  },
+  productDesc: {
+    fontSize: 10,
+    marginBottom: 7,
+    color: '#8A8888'
+  },
+  productValue: {
+    fontSize: 10,
+    color: '#8A8888'
+  },
+  btnProductArea: {
+    width: '90%',
+    alignItems: 'flex-end',
+  },
+  btnProduct: {
+    width: '45%',
+    height: 15,
+    backgroundColor: '#118E96',
+    alignItems: 'center',
+    borderRadius: 2,
+  },
+  btnProductTxt: {
+    fontSize: 10,
+    color: '#F1F1F1',
+  }
+})
