@@ -23,7 +23,7 @@ const Login = ({route}) => {
                   const { email, senha } = JSON.parse(dados);
                   setStoredEmail(email);
                   setStoredSenha(senha);
-                  console.warn(`Dados acessados no AsyncStorage com sucesso! Email: ${storedEmail}, ${storedSenha}`);
+                  console.warn(`Dados acessados no AsyncStorage com sucesso! Email: ${email}, ${senha}`);
                 }
             } catch (error) {
                 console.error('Erro ao recuperar os dados salvos do AsyncStorage:', error);
@@ -39,6 +39,8 @@ const Login = ({route}) => {
       navigation.navigate('Catalogo');
     } else {
       Alert.alert('Email ou senha incorretos.');
+      console.error('Não foi possível se conectar a conta');
+      console.warn(`Os dados não são possíveis de se comparar! Email: ${inputEmail}, ${inputSenha}`);
     }
   };
 
@@ -115,6 +117,11 @@ const styles = StyleSheet.create({
     width: 10,
     height: 10,
     marginTop: 5,
+  },
+  loginBtnArea: {
+    width: '100%',
+    alignItems: 'center',
+    justifyContent: 'center'
   },
   btnEnter: {
     width: '95%',

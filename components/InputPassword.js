@@ -1,11 +1,13 @@
 import { View, StyleSheet, Image, TouchableOpacity, TextInput } from 'react-native';
 
-const InputPassword = () => {
+const InputPassword = ({value, onChangeText}) => {
   return(
     <View style={styles.inputWithIcon}>
       <TextInput
       style={styles.txtinput}
       secureTextEntry={true}
+      value={value}
+      onChangeText={onChangeText}
       />
       <TouchableOpacity>
       </TouchableOpacity>
