@@ -18,7 +18,7 @@ const Inicial = ({ navigation }) => {
         </Text>
         <TouchableOpacity
           style={styles.btnEnter}
-          onPress={() => navigation.navigate('TabMenu')}>
+          onPress={() => navigation.navigate('Catalogo')}>
           <Text style={styles.buttonText}>Começar sem login</Text>
         </TouchableOpacity>
         <View style={styles.sair}>
@@ -30,7 +30,6 @@ const Inicial = ({ navigation }) => {
           </TouchableOpacity>
         </View>
       </View>
-
     </SafeAreaView>
   );
 }

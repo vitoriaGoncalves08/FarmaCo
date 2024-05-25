@@ -2,11 +2,12 @@ import React, { useState } from 'react';
 import { Text, SafeAreaView, StyleSheet, Image, View, TouchableOpacity, TextInput, KeyboardAvoidingView, ScrollView } from 'react-native';
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 
-import { useNavigation } from "@react-navigation/native";
+import TabMenu from '../components/TabMenu';
 
 const Catalogo = ({ navigation }) => {
 
   return (
+    <>
     <ScrollView contentContainerStyle={styles.scrollViewContent}>
       <View style={styles.supNot}>
         <View style={styles.hiArea}>
@@ -160,6 +161,8 @@ const Catalogo = ({ navigation }) => {
         </View>
       </View>
     </ScrollView>
+    <TabMenu/>
+    </>
   );
 }
 

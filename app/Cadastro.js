@@ -1,9 +1,11 @@
 import React from 'react';
 import { Text, SafeAreaView, StyleSheet, Image, View, TouchableOpacity, TextInput, KeyboardAvoidingView, ScrollView } from 'react-native';
 import { FontAwesome5 } from '@expo/vector-icons';
+import TabMenu from '../components/TabMenu';
 
 const Cadastro = ({navigation}) => {
   return(
+    <>
     <SafeAreaView style={styles.container}>
       <KeyboardAvoidingView style={{ flex: 4 }} behavior="padding">
         <ScrollView contentContainerStyle={{ flexGrow: 4 }}>
@@ -60,6 +62,8 @@ const Cadastro = ({navigation}) => {
         </ScrollView>
       </KeyboardAvoidingView>
     </SafeAreaView>
+    <TabMenu/>
+    </>
   );
 }
 

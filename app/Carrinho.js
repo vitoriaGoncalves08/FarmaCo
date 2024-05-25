@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Text, SafeAreaView, StyleSheet, Image, TouchableOpacity, View, ScrollView, CheckBox } from 'react-native';
+import TabMenu from '../components/TabMenu';
 
 const Carrinho = ({ navigation }) => {
   
@@ -104,6 +105,7 @@ const Carrinho = ({ navigation }) => {
         </View>
         <TouchableOpacity style={styles.botaoPagamento}><Text style={styles.buttonText}>Continuar</Text></TouchableOpacity>
       </View>
+      <TabMenu />
     </SafeAreaView>
     </>
   );
