@@ -95,7 +95,6 @@ const PesquisarProduto = () => {
           <Produto />
           <Produto />
           <Produto />
-          <Produto />
         </ScrollView>
       </SafeAreaView>
       <TabMenu/>
