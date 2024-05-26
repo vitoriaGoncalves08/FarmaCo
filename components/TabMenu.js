@@ -71,7 +71,7 @@ const TabMenu = () => {
         onPress={() => {
           navigation.navigate('Cadastro');
         }}>
-        <Ionicons style={styles.icons} name="person" size={24} color={'#424141'} />
+        <MaterialCommunityIcons style={styles.icons} name="order-bool-descending" size={27} color={'#424141'}  />
       </TouchableOpacity>
     </View>
   );
