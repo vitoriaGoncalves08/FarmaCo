@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'white',
+    backgroundColor: '#F1F1F1',
     padding: 8
   },
   column: {
@@ -64,7 +64,7 @@ const styles = StyleSheet.create({
     marginTop: 0,
     marginRight: 10,
     justifyContent: 'flex-end',
-    backgroundColor: 'white',
+    backgroundColor: '#F1F1F1',
     width: 'stretch',
     height: 20,
   },

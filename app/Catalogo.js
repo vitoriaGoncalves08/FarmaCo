@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Text, SafeAreaView, StyleSheet, Image, View, TouchableOpacity, TextInput, KeyboardAvoidingView, ScrollView } from 'react-native';
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 
+import { useNavigation } from "@react-navigation/native";
 import TabMenu from '../components/TabMenu';
 
 const Catalogo = ({ navigation }) => {
@@ -364,7 +365,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 7,
   },
   prodBox: {
-    backgroundColor: 'white',
+    backgroundColor: '#F1F1F1',
     width: '100%',
     height: 210,
     paddingHorizontal: 3,
