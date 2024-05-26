@@ -89,7 +89,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     marginBottom: 10,
     marginLeft: 10, 
-    marginTop: 50
+    marginTop: 30
   },
   subTxt: {
     fontSize:16,
