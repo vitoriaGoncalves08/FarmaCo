@@ -92,8 +92,6 @@ const PesquisarProduto  = () => {
         </View>     
 
         <Produto />
-        <Produto />
-        <Produto />
 
     </SafeAreaView>
   );
