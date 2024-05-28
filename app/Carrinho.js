@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
-import { Text, SafeAreaView, StyleSheet, Image, TouchableOpacity, View, ScrollView, CheckBox } from 'react-native';
+import { Text, SafeAreaView, StyleSheet, Image, TouchableOpacity, View, ScrollView, KeyboardAvoidingView, Platform } from 'react-native';
+import Checkbox from 'expo-checkbox'; // Importação do Checkbox
+import TabMenu from '../components/TabMenu';
 
 const Carrinho = ({ navigation }) => {
-  
   const [carrinho, setCarrinho] = useState([
-    { id: 1, nome: 'Diporrona Monohi...', descricao: 'Remedio para dores', preco: 10.00, quantidade: 1 },
-    { id: 2, nome: 'Diporrona Monohi...', descricao: 'Remedio para dores', preco: 15.00, quantidade: 1 },
+    { id: 1, nome: 'Dipirona Monohi...', descricao: 'Remédio para dores', preco: 10.00, quantidade: 1 },
+    { id: 2, nome: 'Dipirona Monohi...', descricao: 'Remédio para dores', preco: 15.00, quantidade: 1 },
   ]);
   const [selecionadoTodos, setSelecionadoTodos] = useState(false);
   const [itensSelecionados, setItensSelecionados] = useState([]);
@@ -24,7 +25,6 @@ const Carrinho = ({ navigation }) => {
       setItensSelecionados(itensSelecionados.filter(itemId => itemId !== id));
     } else {
       setItensSelecionados([...itensSelecionados, id]);
-      
     }
   };
 
@@ -46,72 +46,81 @@ const Carrinho = ({ navigation }) => {
     }, 0);
   };
 
-
   return (
-    <>
     <SafeAreaView style={styles.container}>
-      <View style={styles.header}>
-        <Text style={styles.title}>Carrinho</Text>
-      </View>
-      <View style={styles.todoscheckbox}>
-           <CheckBox
-              value={selecionadoTodos}
-              onValueChange={toggleSelecionadoTodos}
-              style={[styles.checkbox, selecionadoTodos]}
-            />
-        <Text style={{marginLeft: 10, color: '#A7A7A7', fontSize: 16, fontWeight: 600, lineHeight: '120%'}}>Selecionar todos</Text>
-      </View>
-      <ScrollView>
-        {carrinho.map(item => (
-          <View key={item.id} style={styles.card}>
-            <View style={styles.item}>
-               <CheckBox
-                value={itensSelecionados.includes(item.id)}
-                onValueChange={() => toggleItemSelecionado(item.id)}
-                style={[styles.checkbox, itensSelecionados.includes(item.id) ? styles.checkboxSelecionado : null]}
+      <KeyboardAvoidingView
+        style={styles.container}
+        behavior={Platform.OS === "ios" ? "padding" : "height"}
+      >
+        <View style={styles.header}>
+          <Text style={styles.title}>Carrinho</Text>
+        </View>
+        <View style={styles.todosCheckbox}>
+          <Checkbox
+            value={selecionadoTodos}
+            onValueChange={toggleSelecionadoTodos}
+            style={styles.checkbox}
+          />
+          <Text style={styles.selecionarTodosTexto}>Selecionar todos</Text>
+        </View>
+        <ScrollView contentContainerStyle={styles.scrollContainer}>
+          {carrinho.map(item => (
+            <View key={item.id} style={styles.card}>
+              <View style={styles.item}>
+                <Checkbox
+                  value={itensSelecionados.includes(item.id)}
+                  onValueChange={() => toggleItemSelecionado(item.id)}
+                  style={styles.checkbox}
                 />
-              <Image source={require('../assets/img/remedio.png')} style={styles.imagem} />
-              <View style={styles.texto}>
-                <Text style={styles.titulo}>{item.nome}</Text>
-                <Text style={styles.descricao}>{item.descricao}</Text>
-                <Text style={styles.preco}>R$ {item.preco}</Text>
-              </View>
-              <View style={styles.botoesQuantidade}>
-                <TouchableOpacity style={styles.botaoMenos} onPress={() => diminuirQuantidade(item.id)}>
-                  <Text>-</Text>
-                </TouchableOpacity>
-                <Text>{item.quantidade}</Text>
-                <TouchableOpacity style={styles.botaoMais} onPress={() => aumentarQuantidade(item.id)}>
-                  <Text style={{color: '#118E96', margin: 0}}>+</Text>
-                </TouchableOpacity>
+                <Image source={require('../assets/img/remedio.png')} style={styles.imagem} />
+                <View style={styles.texto}>
+                  <Text style={styles.titulo}>{item.nome}</Text>
+                  <Text style={styles.descricao}>{item.descricao}</Text>
+                  <Text style={styles.preco}>R$ {item.preco}</Text>
+                </View>
+                <View style={styles.botoesQuantidade}>
+                  <TouchableOpacity style={styles.botaoMenos} onPress={() => diminuirQuantidade(item.id)}>
+                    <Text>-</Text>
+                  </TouchableOpacity>
+                  <Text>{item.quantidade}</Text>
+                  <TouchableOpacity style={styles.botaoMais} onPress={() => aumentarQuantidade(item.id)}>
+                    <Text style={{ color: '#118E96', margin: 0 }}>+</Text>
+                  </TouchableOpacity>
+                </View>
               </View>
             </View>
+          ))}
+        </ScrollView>
+        <View style={styles.footer}>
+          <View style={styles.textos}>
+            <Text style={styles.preco}>Subtotal:</Text>
+            <Text style={styles.preco}>R$ {calcularSubtotal()}</Text>
           </View>
-        ))}
-      </ScrollView>
-      <View style={styles.footer}>
-        <View style={styles.textos}>
-          <Text style={styles.preco}>Subtotal:</Text>
-          <Text style={styles.preco}>R$ {calcularSubtotal()}</Text>
+          <View style={styles.textos}>
+            <Text style={styles.preco}>Frete:</Text>
+            <Text style={styles.preco}>R$ 5.00</Text>
+          </View>
+          <View style={styles.textos}>
+            <Text style={styles.title}>TOTAL:</Text>
+            <Text style={styles.title}>R$ {calcularSubtotal() !== 0 ? calcularSubtotal() + 5 : "5.00"}</Text>
+          </View>
+          <TouchableOpacity style={styles.botaoPagamento}>
+            <Text style={styles.buttonText}>Continuar</Text>
+          </TouchableOpacity>
         </View>
-        <View style={styles.textos}>
-          <Text style={styles.preco}>Frete:</Text>
-          <Text style={styles.preco}>R$ 5.00</Text>
-        </View>
-        <View style={styles.textos}>
-          <Text style={styles.title}>TOTAL:</Text>
-          <Text style={styles.title}>R$ {calcularSubtotal() != 0 ? calcularSubtotal() + 5 : "5.00"}</Text>
-        </View>
-        <TouchableOpacity style={styles.botaoPagamento}><Text style={styles.buttonText}>Continuar</Text></TouchableOpacity>
-      </View>
+      </KeyboardAvoidingView>
+      <TabMenu />
     </SafeAreaView>
-    </>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: '#F1F1F1',
+  },
+  scrollContainer: {
+    paddingBottom: 150,
   },
   card: {
     shadowColor: "#424141",
@@ -134,17 +143,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginBottom: 10,
   },
-  todoscheckbox: {
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'flex-start',
-    margin: 10
-  },
-  checkbox: {
-    width: 22,
-    height: 23,
-    borderRadius: 10,
-  },
   header: {
     marginTop: 10,
     marginBottom: 35,
@@ -154,7 +152,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 18,
-    fontWeight: 700,
+    fontWeight: '700',
     color: '#424141'
   },
   imagem: {
@@ -163,7 +161,6 @@ const styles = StyleSheet.create({
     margin: 15,
   },
   textos: {
-    flex: 1,
     flexDirection: 'row',
     justifyContent: 'space-between',
     marginLeft: 10,
@@ -172,7 +169,6 @@ const styles = StyleSheet.create({
     marginTop: 5
   },
   texto: {
-    flex: 1,
     flexDirection: 'column',
     justifyContent: 'space-between',
     marginLeft: 10,
@@ -187,7 +183,7 @@ const styles = StyleSheet.create({
   preco: {
     fontSize: 16,
     color: '#888',
-    fontWeight: 600
+    fontWeight: '600'
   },
   descricao: {
     fontSize: 14,
@@ -213,16 +209,33 @@ const styles = StyleSheet.create({
     padding: 5,
     marginLeft: 5,
     borderColor:'#118E96',
-    background: '#F1F1F1',
+    backgroundColor: '#F1F1F1',
     width: 35,
     height: 35,
     justifyContent: 'center',
     alignItems: 'center', 
   },
+  checkbox: {
+    marginRight: 10,
+  },
+  todosCheckbox: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginLeft: 20,
+    marginBottom: 20,
+  },
+  selecionarTodosTexto: {
+    marginLeft: 10,
+    color: '#A7A7A7',
+    fontSize: 16,
+    fontWeight: '600',
+  },
   footer: {
     backgroundColor: '#eee',
     padding: 10,
-    marginBottom: 85,
+    position: 'absolute',
+    bottom: 0,
+    width: '100%',
   },
   botaoPagamento: {
     width: '95%',

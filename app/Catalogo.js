@@ -2,16 +2,23 @@ import React, { useState } from 'react';
 import { Text, SafeAreaView, StyleSheet, Image, View, TouchableOpacity, TextInput, KeyboardAvoidingView, ScrollView } from 'react-native';
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 
+import { useNavigation } from "@react-navigation/native";
+import TabMenu from '../components/TabMenu';
+
 const Catalogo = ({ navigation }) => {
 
   return (
+    <>
     <ScrollView contentContainerStyle={styles.scrollViewContent}>
       <View style={styles.supNot}>
         <View style={styles.hiArea}>
           <Text style={styles.hiTxt}>Ola, usuário</Text>
         </View>
         <View style={styles.notArea}>
-          <TouchableOpacity style={styles.iconSup}>
+          <TouchableOpacity 
+            style={styles.iconSup}
+            onPress={() => navigation.navigate('Carrinho')}
+          >
             <Image style={styles.kartIcon} source={require('../assets/img/carrinho.png')} />
           </TouchableOpacity>
           <TouchableOpacity style={styles.iconSup}>
@@ -155,6 +162,8 @@ const Catalogo = ({ navigation }) => {
         </View>
       </View>
     </ScrollView>
+    <TabMenu />
+    </>
   );
 }
 
@@ -356,7 +365,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 7,
   },
   prodBox: {
-    backgroundColor: 'white',
+    backgroundColor: '#F1F1F1',
     width: '100%',
     height: 210,
     paddingHorizontal: 3,

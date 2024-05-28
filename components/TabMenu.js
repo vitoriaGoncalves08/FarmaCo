@@ -1,128 +1,119 @@
-import React, { children } from 'react';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import React, { useState } from 'react';
 import { StyleSheet, View, TouchableOpacity } from 'react-native';
-import Cadastro from '../app/Cadastro';
-import Login from '../app/Login';
-import Catalogo from '../app/Catalogo';
-import Carrinho from '../app/Carrinho';
-import PesquisarProduto from '../app/PesquisarProduto';
-import { MaterialCommunityIcons, FontAwesome5, FontAwesome, Ionicons, MaterialIcons } from '@expo/vector-icons';
-
-const Tab = createBottomTabNavigator();
+import { useNavigation } from '@react-navigation/native';
+import {
+  MaterialCommunityIcons,
+  FontAwesome5,
+  FontAwesome,
+  Ionicons,
+  MaterialIcons,
+} from '@expo/vector-icons';
 
 const user = { nome: 'admin', senha: 1234 };
 
 const CustomTabMenuBottom = ({ children, onPress }) => (
-    <TouchableOpacity
-        style={{
-            top: -20,
-            justifyContent: 'center',
-            alignItems: 'center',
-        }}
-        onPress={onPress}
-    >
-        <View style={{ width: 55, height: 55, borderRadius: 35, backgroundColor: '#118E96' }}>{children}</View>
-    </TouchableOpacity>
-)
+  <TouchableOpacity
+    style={{
+      top: -20,
+      justifyContent: 'center',
+      alignItems: 'center',
+    }}
+    onPress={onPress}>
+    <View style={styles.customButton}>
+      {children}
+    </View>
+  </TouchableOpacity>
+);
 
-export const TabMenu = () => {
-    return (
-        <Tab.Navigator
-            screenOptions={{
-                headerShown: false,
-                tabBarStyle: styles.tabBar,
-                tabBarShowLabel: false,
+const TabMenu = () => {
+  const navigation = useNavigation();
+
+  return (
+    <View style={styles.tabBar}>
+      <TouchableOpacity
+        style={styles.tabItem}
+        onPress={() => {
+          navigation.navigate('Catalogo');
+        }}>
+        <MaterialCommunityIcons style={styles.icons} name="home" size={29} color={'#424141'} />
+      </TouchableOpacity>
+      <TouchableOpacity
+        style={styles.tabItem}
+        onPress={() => {
+          navigation.navigate('PesquisarProduto');
+        }}>
+        <FontAwesome style={styles.icons} name="search" size={24} color={'#424141'} />
+      </TouchableOpacity>
+      {user.nome === 'admin' && user.senha === 123 ? (
+        <>
+          <CustomTabMenuBottom onPress={() => navigation.navigate('Cadastro')}>
+            <FontAwesome5 name="plus" size={24} color="#fff" />
+          </CustomTabMenuBottom>
+          <TouchableOpacity
+            style={styles.tabItem}
+            onPress={() => {
+              navigation.navigate('Login');
             }}>
-
-            <Tab.Screen name='Catalogo' component={Catalogo}
-                options={{
-                    tabBarIcon: ({ focused }) => (
-                        <View style={{ alignItems: 'center', justifyContent: 'center' }}>
-                            {/* <Image
-                                source={require('../assets/img/home.png')}
-                                resizeMode='contain'
-                                style={{ width: 25, height: 25, tintColor: focused ? '#118E96' : '#424141' }}
-                            /> */}
-                            <MaterialCommunityIcons name="home" size={29} color={focused ? '#118E96' : '#424141'} />
-                        </View>
-                    )
-                }}
-            />
-            <Tab.Screen name='PesquisarProduto' component={PesquisarProduto}
-                options={{
-                    tabBarIcon: ({ focused }) => (
-                        <View style={{ alignItems: 'center', justifyContent: 'center' }}>
-                            <FontAwesome name="search" size={24} color={focused ? '#118E96' : '#424141'} />
-                        </View>
-                    )
-                }} />
-
-            {user.nome === 'admin' && user.senha === 123 ? (
-                <>
-                    <Tab.Screen name='Cadastro' component={Cadastro}
-                        options={{
-                            tabBarIcon: ({ focused }) => (
-                                <View style={{ alignItems: 'center', justifyContent: 'center' }}>
-                                    <FontAwesome5 name="plus" size={24} color="#fff" />
-                                </View>
-                            ),
-                            tabBarButton: (props) => (
-                                <CustomTabMenuBottom {...props} />
-                            )
-                        }}
-                    />
-                    <Tab.Screen name='Login' component={Login}
-                        options={{
-                            tabBarIcon: ({ focused }) => (
-                                <View style={{ alignItems: 'center', justifyContent: 'center' }}>
-                                    <MaterialIcons name="dashboard" size={24} color={focused ? '#118E96' : '#424141'} />
-                                </View>
-                            )
-                        }} />
-                </>
-            ) : (
-                <Tab.Screen name='Carrinho' component={Carrinho}
-                    options={{
-                        tabBarIcon: ({ focused }) => (
-                            <View style={{ alignItems: 'center', justifyContent: 'center' }}>
-                                <FontAwesome5 name="shopping-cart" size={22} color={focused ? '#118E96' : '#424141'} />
-                            </View>
-                        )
-                    }} />
-
-            )}
-
-            <Tab.Screen name='Cadastro' component={Cadastro}
-                options={{
-                    tabBarIcon: ({ focused }) => (
-                        <View style={{ alignItems: 'center', justifyContent: 'center' }}>
-                            <Ionicons name="person" size={24} color={focused ? '#118E96' : '#424141'} />
-                        </View>
-                    )
-                }} />
-        </Tab.Navigator>
-    )
-}
+            <MaterialIcons style={styles.icons} name="dashboard" size={24} color={'#424141'} />
+          </TouchableOpacity>
+        </>
+      ) : (
+        <TouchableOpacity
+          style={styles.tabItem}
+          onPress={() => {
+            navigation.navigate('Carrinho');
+          }}>
+          <FontAwesome5 style={styles.icons} name="shopping-cart" size={22} color={'#424141'} />
+        </TouchableOpacity>
+      )}
+      <TouchableOpacity
+        style={styles.tabItem}
+        onPress={() => {
+          navigation.navigate('Cadastro');
+        }}>
+        <MaterialCommunityIcons style={styles.icons} name="order-bool-descending" size={27} color={'#424141'}  />
+      </TouchableOpacity>
+    </View>
+  );
+};
 
 const styles = StyleSheet.create({
-    tabBar: {
-        position: 'absolute',
-        bottom: 25,
-        border: 'none',
-        left: 20,
-        right: 20,
-        elevation: 0,
-        backgroundColor: '#F1F1F1',
-        borderRadius: 20,
-        height: 60,
-        marginBottom: 10,
-        shadowColor: '#424141',
-        shadowOffset: {
-            width: 0,
-            height: 10,
-        },
-        shadowOpacity: 0.24,
-        shadowRadius: 4,
-        elevation: 10,
+  tabBar: {
+    flexDirection: 'row',
+    height: 60,
+    backgroundColor: '#F1F1F1',
+    borderRadius: 20,
+    margin: 10,
+    shadowColor: '#424141',
+    shadowOffset: {
+      width: 0,
+      height: 10,
     },
+    shadowOpacity: 0.24,
+    shadowRadius: 4,
+    elevation: 10,
+    justifyContent: 'space-around',
+    alignItems: 'center',
+  },
+  tabItem: {
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  customButton: {
+    width: 55,
+    height: 55,
+    borderRadius: 35,
+    backgroundColor: '#118E96',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  tabText: {
+    fontSize: 12,
+    color: '#424141',
+  },
+  icons: {
+    marginBottom: 8
+  }
 });
+
+export default TabMenu;

@@ -18,7 +18,7 @@ const Inicial = ({ navigation }) => {
         </Text>
         <TouchableOpacity
           style={styles.btnEnter}
-          onPress={() => navigation.navigate('TabMenu')}>
+          onPress={() => navigation.navigate('Catalogo')}>
           <Text style={styles.buttonText}>Começar sem login</Text>
         </TouchableOpacity>
         <View style={styles.sair}>
@@ -30,7 +30,6 @@ const Inicial = ({ navigation }) => {
           </TouchableOpacity>
         </View>
       </View>
-
     </SafeAreaView>
   );
 }
@@ -40,14 +39,13 @@ export default Inicial;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'flex-start',
+    justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'white',
-    padding: 8,
+    marginBottom: 10,
+    backgroundColor: '#F1F1F1',
   },
   paragraph: {
-    marginTop: 60,
-    marginBottom: 60,
+    marginBottom: 20,
     color: '#b5b5b5',
     fontSize: 15,
     fontWeight: 'bold',
@@ -97,14 +95,12 @@ const styles = StyleSheet.create({
     alignContent: 'center',
     width: 220,
     height: 55,
-    backgroundColor: 'white',
   },
   btnLogin: {
     width: 180,
     height: 38,
     color: 'green',
     borderRadius: 20,
-    backgroundColor: 'white',
     justifyContent: 'center',
     flexDirection: 'row',
     margin: 10,

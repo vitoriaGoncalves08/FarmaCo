@@ -68,7 +68,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'white',
+    backgroundColor: '#F1F1F1',
     padding: 8
   },
   column: {
@@ -89,6 +89,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     marginBottom: 10,
     marginLeft: 10, 
+    marginTop: 30
   },
   subTxt: {
     fontSize:16,
@@ -140,9 +141,9 @@ const styles = StyleSheet.create({
     marginTop: 0,
     marginRight: 17,
     justifyContent: 'flex-end',
-    backgroundColor: 'white',
     width: 'stretch',
     height: 20,
+    backgroundColor: '#F1F1F1',
   },
   loginTxt: {
     fontSize: 13,
