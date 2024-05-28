@@ -92,7 +92,7 @@ const Catalogo = ({ navigation }) => {
               <View style={styles.discountArea}>
                 <Text style={styles.discountTxt}>-10%</Text>
               </View>
-              <Image style={styles.prodImage} source={require('../assets/img/remedio.png')} />
+              <Image style={styles.prodImage} source={require('../assets/img/remedios/remedio.png')} />
               <View style={styles.infoProdArea}>
                 <Text style={styles.productName}>Diporrona  Monohidratada</Text>
                 <Text style={styles.productDesc}>Remedio para dores</Text>
@@ -110,7 +110,7 @@ const Catalogo = ({ navigation }) => {
               <View style={styles.discountArea}>
                 <Text style={styles.discountTxt}>-10%</Text>
               </View>
-              <Image style={styles.prodImage} source={require('../assets/img/remedio.png')} />
+              <Image style={styles.prodImage} source={require('../assets/img/remedios/remedio.png')} />
               <View style={styles.infoProdArea}>
                 <Text style={styles.productName}>Diporrona  Monohidratada</Text>
                 <Text style={styles.productDesc}>Remedio para dores</Text>
@@ -128,7 +128,7 @@ const Catalogo = ({ navigation }) => {
               <View style={styles.discountArea}>
                 <Text style={styles.discountTxt}>-10%</Text>
               </View>
-              <Image style={styles.prodImage} source={require('../assets/img/remedio.png')} />
+              <Image style={styles.prodImage} source={require('../assets/img/remedios/remedio.png')} />
               <View style={styles.infoProdArea}>
                 <Text style={styles.productName}>Diporrona Monohidratada</Text>
                 <Text style={styles.productDesc}>Remedio para dores</Text>
@@ -146,7 +146,7 @@ const Catalogo = ({ navigation }) => {
               <View style={styles.discountArea}>
                 <Text style={styles.discountTxt}>-10%</Text>
               </View>
-              <Image style={styles.prodImage} source={require('../assets/img/remedio.png')} />
+              <Image style={styles.prodImage} source={require('../assets/img/remedios/remedio.png')} />
               <View style={styles.infoProdArea}>
                 <Text style={styles.productName}>Diporrona  Monohidratada</Text>
                 <Text style={styles.productDesc}>Remedio para dores</Text>

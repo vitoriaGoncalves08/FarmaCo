@@ -25,7 +25,7 @@ const DetalheProduto = ({ navigation }) => {
       <View style={styles.produtotela}>
         <Image
           style={styles.imgproduto}
-          source={require('../assets/img/Dipirona.png')}
+          source={require('../assets/img/remedios/Dipirona.png')}
         />
       </View>
 

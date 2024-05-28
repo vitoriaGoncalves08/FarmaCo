@@ -72,7 +72,7 @@ const Carrinho = ({ navigation }) => {
                   onValueChange={() => toggleItemSelecionado(item.id)}
                   style={styles.checkbox}
                 />
-                <Image source={require('../assets/img/remedio.png')} style={styles.imagem} />
+                <Image source={require('../assets/img/remedios/remedio.png')} style={styles.imagem} />
                 <View style={styles.texto}>
                   <Text style={styles.titulo}>{item.nome}</Text>
                   <Text style={styles.descricao}>{item.descricao}</Text>
