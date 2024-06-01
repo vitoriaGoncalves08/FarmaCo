@@ -14,68 +14,64 @@ import Botao from '../components/Botao';
 const DetalheProduto = ({ navigation }) => {
   return (
     <SafeAreaView style={styles.container}>
-      <View style={styles.topo}>
-        <View style={styles.voltar}>
-          <Return href={'PesquisarProduto'} />
+      <ScrollView contentContainerStyle={styles.scrollContainer}>
+        <View style={styles.topo}>
+          <View style={styles.voltar}>
+            <Return href={'PesquisarProduto'} />
+          </View>
+          <View style={styles.carrinho}>
+            <BotaoCarrinho href={'Carrinho'} />
+          </View>
         </View>
-        <View style={styles.carrinho}>
-          <BotaoCarrinho href={'Carrinho'} />
-        </View>
-      </View>
-      <View style={styles.produtotela}>
-        <Image
-          style={styles.imgproduto}
-          source={require('../assets/img/Dipirona.png')}
-        />
-      </View>
-
-      <Text style={styles.nomeproduto}>
-        Dipirona Monoidratada 500mg 10cpr Prati Donaduzzi
-      </Text>
-
-      <View style={styles.avaliacaocontainer}>
-        <View style={styles.estrelacontainer}>
+        <View style={styles.produtotela}>
           <Image
-            style={styles.estrelinha}
-            source={require('../assets/img/estrela.png')}
-          />
-          <Image
-            style={styles.estrelinha}
-            source={require('../assets/img/estrela.png')}
-          />
-          <Image
-            style={styles.estrelinha}
-            source={require('../assets/img/estrela.png')}
-          />
-          <Image
-            style={styles.estrelinha}
-            source={require('../assets/img/estrela.png')}
-          />
-          <Image
-            style={styles.estrelinha}
-            source={require('../assets/img/estrela.png')}
+            style={styles.imgproduto}
+            source={require('../assets/img/Dipirona.png')}
           />
         </View>
-        <View style={styles.reacaocontainer}>
-          <Image
-            style={styles.estrelinha}
-            source={require('../assets/img/coracao.png')}
-          />
-          <Image
-            style={styles.estrelinha}
-            source={require('../assets/img/compartilhar.png')}
-          />
+        <Text style={styles.nomeproduto}>
+          Dipirona Monoidratada 500mg 10cpr Prati Donaduzzi
+        </Text>
+        <View style={styles.avaliacaocontainer}>
+          <View style={styles.estrelacontainer}>
+            <Image
+              style={styles.estrelinha}
+              source={require('../assets/img/estrela.png')}
+            />
+            <Image
+              style={styles.estrelinha}
+              source={require('../assets/img/estrela.png')}
+            />
+            <Image
+              style={styles.estrelinha}
+              source={require('../assets/img/estrela.png')}
+            />
+            <Image
+              style={styles.estrelinha}
+              source={require('../assets/img/estrela.png')}
+            />
+            <Image
+              style={styles.estrelinha}
+              source={require('../assets/img/estrela.png')}
+            />
+          </View>
+          <View style={styles.reacaocontainer}>
+            <Image
+              style={styles.estrelinha}
+              source={require('../assets/img/coracao.png')}
+            />
+            <Image
+              style={styles.estrelinha}
+              source={require('../assets/img/compartilhar.png')}
+            />
+          </View>
         </View>
-      </View>
-
-      <View style={styles.descontotext}>
-        <Text>R$00,00</Text>
-      </View>
-      <View style={styles.precotext}>
-        <Text style={styles.preco}>R$12,50</Text>
-      </View>
-
-      <ScrollView>
+        <View style={styles.descontotext}>
+          <Text>R$00,00</Text>
+        </View>
+        <View style={styles.precotext}>
+          <Text style={styles.preco}>R$12,50</Text>
+        </View>
         <View>
           <Text style={styles.title}>Descrição</Text>
         </View>
@@ -89,7 +85,6 @@ const DetalheProduto = ({ navigation }) => {
             ou pesando menos de 5 kg.
           </Text>
         </View>
-
         <View>
           <Text style={styles.title}>Especificações</Text>
         </View>
@@ -100,11 +95,10 @@ const DetalheProduto = ({ navigation }) => {
             seu médico em caso de suspeita de gravidez.
           </Text>
         </View>
+        <View style={styles.botaocarrinho}>
+          <Botao href={'Carrinho'} textBtn={'Adicionar ao carrinho'} />
+        </View>
       </ScrollView>
-
-      <View style={styles.botaocarrinho}>
-        <Botao href={'Carrinho'} textBtn={'Adicionar ao carrinho'} />
-      </View>
     </SafeAreaView>
   );
 };
@@ -114,22 +108,19 @@ export default DetalheProduto;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
     backgroundColor: '#F1F1F1',
-    padding: 8,
-    elevation: 5,
   },
-  tinyLogo: {
-    width: 35,
-    height: 35,
+  scrollContainer: {
+    flexGrow: 1,
+    alignItems: 'center',
+    padding: 8,
   },
   nomeproduto: {
     fontWeight: 'bold',
-    justifyContent: 'center',
-    fontSize: 25,
-    height: 60,
-    paddingHorizontal: 24,
+    textAlign: 'center',
+    fontSize: 20,
+    marginVertical: 10,
+    paddingHorizontal: 16,
   },
   estrelinha: {
     width: 25,
@@ -137,7 +128,7 @@ const styles = StyleSheet.create({
   },
   avaliacaocontainer: {
     marginTop: 15,
-    paddingHorizontal: 24,
+    paddingHorizontal: 16,
     width: '100%',
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -149,73 +140,68 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   topo: {
-    width: '95%',
+    width: '100%',
     flexDirection: 'row',
     marginTop: 30,
     justifyContent: 'space-between',
+    paddingHorizontal: 16,
   },
   voltar: {
     flexDirection: 'row',
-    justifyContent: 'left',
   },
   carrinho: {
-    justifyContent: 'right',
     flexDirection: 'row',
   },
   produtotela: {
     alignItems: 'center',
+    marginVertical: 20,
   },
   imgproduto: {
-    marginBottom: 20,
-    width: 307,
-    height: 337,
+    width: '80%',
+    height: undefined,
+    aspectRatio: 207 / 237, // Mantém a proporção da imagem
+    resizeMode: 'contain',
   },
   descontotext: {
-    width: '95%',
-    paddingHorizontal: 24,
+    width: '100%',
+    paddingHorizontal: 16,
     marginTop: 10,
-    fontSize: 5,
+    fontSize: 15,
     color: '#A7A7A7',
-    justifyContent: 'flex-start',
-    alignItems: 'flex-start',
+    textAlign: 'left',
   },
   precotext: {
-    width:"95%",
-    paddingHorizontal: 24,
+    width: '100%',
+    paddingHorizontal: 16,
     fontSize: 44,
-    color: "#424141",
-    justifyContent:"flex-start",
-    alignItems:"flex-start",
+    color: '#424141',
+    textAlign: 'left',
   },
   preco: {
     fontWeight: 'bold',
     fontSize: 30,
   },
   paragraph: {
-    fontSize: 13,
+    fontSize: 15,
     textAlign: 'justify',
-
     flexWrap: 'wrap',
   },
   descricao: {
-    paddingHorizontal: 24,
-    marginHorizontal: 'auto',
-    maxWidth: 400,
+    paddingHorizontal: 16,
+    marginVertical: 10,
   },
-
   title: {
-    marginTop: 30,
+    marginTop: 20,
     fontWeight: 'bold',
     fontSize: 18,
-    textAlign: 'justify',
-    justifyContent: 'center',
-    paddingHorizontal: 24,
+    textAlign: 'center',
+    paddingHorizontal: 16,
   },
   botaocarrinho: {
-    justifyContent: "center",
-    alignItems: "center",
-    width: "95%",
-    height:"15%",
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: '95%',
+    marginVertical: 2,
   },
-
 });

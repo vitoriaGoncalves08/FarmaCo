@@ -9,6 +9,9 @@ import Carrinho from './app/Carrinho';
 import Login from './app/Login';
 import Catalogo from './app/Catalogo';
 import PesquisarProduto from './app/PesquisarProduto';
+import Mapa from './app/Mapa';
+import CadastroEndereco from './app/CadastroEndereco';
+import StatusEntrega from './app/StatusEntrega';
 
 const Stack = createNativeStackNavigator();
 
@@ -54,6 +57,21 @@ export default function App() {
         <Stack.Screen
           name="PesquisarProduto"
           component={PesquisarProduto}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="Mapa"
+          component={Mapa}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="CadastroEndereco"
+          component={CadastroEndereco}
+          options={{ headerShown: false }}
+        />
+         <Stack.Screen
+          name="StatusEntrega"
+          component={StatusEntrega}
           options={{ headerShown: false }}
         />
       </Stack.Navigator>

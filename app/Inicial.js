@@ -1,6 +1,8 @@
 import React from 'react';
-import { Text, SafeAreaView, StyleSheet, Image, TouchableOpacity, View } from 'react-native';
+import { Text, SafeAreaView, StyleSheet, Image, TouchableOpacity, View, Dimensions } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
+
+const { width } = Dimensions.get('window');
 
 const Inicial = ({ navigation }) => {
   return (
@@ -41,71 +43,67 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    marginBottom: 10,
     backgroundColor: '#F1F1F1',
   },
   paragraph: {
     marginBottom: 20,
     color: '#b5b5b5',
-    fontSize: 15,
+    fontSize: width * 0.04,
     fontWeight: 'bold',
     textAlign: 'center',
     fontFamily: 'Helvetica',
   },
   svginicial: {
-    width: 250,
-    height: 250,
+    width: width * 0.8,
+    height: width * 0.8,
     alignSelf: 'center',
   },
   centraltxt: {
-    fontSize: 22,
+    fontSize: width * 0.06,
     color: '#090B0B',
-    margin: 10,
+    marginVertical: 10,
     fontFamily: 'Helvetica'
   },
   subtxtcont: {
-    width: 300,
-    height: 70,
+    width: '80%',
     alignItems: 'center',
   },
   subtxt: {
-    fontSize: 13,
-    marginBottom: 40,
+    fontSize: width * 0.035,
+    marginBottom: width * 0.05,
     textAlign: 'center',
     color: '#5C7070',
   },
   btnEnter: {
-    width: 310,
-    height: 40,
-    color: '#118E96',
-    borderRadius: 20,
+    width: '80%',
+    height: width * 0.1,
+    borderRadius: width * 0.05,
     backgroundColor: '#118E96',
     justifyContent: 'center',
-    margin: 10,
+    marginVertical: width * 0.02,
   },
   buttonText: {
     color: 'white',
     textAlign: 'center',
     fontFamily: '',
-    fontSize: 14,
+    fontSize: width * 0.035,
   },
   sair: {
     flexDirection: 'row',
     justifyContent: 'center',
     alignContent: 'center',
-    width: 220,
-    height: 55,
+    width: '60%',
+    height: width * 0.15,
   },
   btnLogin: {
-    width: 180,
-    height: 38,
-    color: 'green',
-    borderRadius: 20,
+    width: '70%', 
+    height: width * 0.1,
+    borderRadius: width * 0.05,
     justifyContent: 'center',
     flexDirection: 'row',
-    margin: 10,
+    marginVertical: width * 0.02,
   },
-  btnLoginTxt: {
+ btnLoginTxt: {
     color: '#C0C0C0',
     textAlign: 'center',
     fontWeight: 'bold',
@@ -113,8 +111,8 @@ const styles = StyleSheet.create({
     fontSize: 13,
   },
   sairIcon: {
-    width: 10,
-    height: 10,
+    width: width * 0.03,
+    height: width * 0.03,
     marginLeft: 4,
     color: '#C0C0C0',
   }

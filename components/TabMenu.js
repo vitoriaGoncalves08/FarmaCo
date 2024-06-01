@@ -69,7 +69,7 @@ const TabMenu = () => {
       <TouchableOpacity
         style={styles.tabItem}
         onPress={() => {
-          navigation.navigate('Cadastro');
+          navigation.navigate('CadastroEndereco');
         }}>
         <MaterialCommunityIcons style={styles.icons} name="order-bool-descending" size={27} color={'#424141'}  />
       </TouchableOpacity>
@@ -106,10 +106,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#118E96',
     justifyContent: 'center',
     alignItems: 'center',
-  },
-  tabText: {
-    fontSize: 12,
-    color: '#424141',
   },
   icons: {
     marginBottom: 8
