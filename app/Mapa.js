@@ -1,8 +1,6 @@
 import React from 'react';
 import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 import MapView, { Marker } from 'react-native-maps';
-import TabMenu from '../components/TabMenu';
-import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { FontAwesome6 } from '@expo/vector-icons';
 
 const Mapa = ({ route, navigation }) => {
@@ -35,7 +33,6 @@ const Mapa = ({ route, navigation }) => {
             }}
             title={"Farma.co"}
             description={`Rua Carlos Carvalho, 200 - Ferraz de Vasconcelos/ SP`}
-            icon={<MaterialCommunityIcons style={styles.icons} name="home" size={29} color={'#424141'} />}
           />
         </MapView>
         <View style={styles.addressContainer}>

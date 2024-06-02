@@ -1,15 +1,55 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Text, SafeAreaView, StyleSheet, Image, TouchableOpacity, View, ScrollView, KeyboardAvoidingView, Platform } from 'react-native';
 import Checkbox from 'expo-checkbox'; // Importação do Checkbox
 import TabMenu from '../components/TabMenu';
+import AsyncStorage from '@react-native-async-storage/async-storage'; // Importação do AsyncStorage
 
-const Carrinho = ({ navigation }) => {
-  const [carrinho, setCarrinho] = useState([
-    { id: 1, nome: 'Dipirona Monohi...', descricao: 'Remédio para dores', preco: 10.00, quantidade: 1 },
-    { id: 2, nome: 'Dipirona Monohi...', descricao: 'Remédio para dores', preco: 15.00, quantidade: 1 },
-  ]);
+const Carrinho = ({ route }) => {
+  const { produto } = route.params ? route.params : {};
+
+  const [carrinho, setCarrinho] = useState([]);
   const [selecionadoTodos, setSelecionadoTodos] = useState(false);
   const [itensSelecionados, setItensSelecionados] = useState([]);
+
+  useEffect(() => {
+    const carregarCarrinho = async () => {
+      try {
+        const carrinhoLocal = await AsyncStorage.getItem('carrinho');
+        if (carrinhoLocal !== null) {
+          setCarrinho(JSON.parse(carrinhoLocal));
+        }
+      } catch (error) {
+        console.error('Erro ao carregar carrinho do AsyncStorage: ', error);
+      }
+    };
+
+    carregarCarrinho();
+  }, []);
+
+  useEffect(() => {
+    const salvarCarrinho = async () => {
+      try {
+        await AsyncStorage.setItem('carrinho', JSON.stringify(carrinho));
+      } catch (error) {
+        console.error('Erro ao salvar carrinho no AsyncStorage: ', error);
+      }
+    };
+
+    if (carrinho.length > 0) {
+      salvarCarrinho();
+    }
+  }, [carrinho]);
+
+  useEffect(() => {
+    if (produto && Object.keys(produto).length > 0) {
+      const produtoExistente = carrinho.find(item => item.id === produto.id);
+      if (produtoExistente) {
+        setCarrinho(carrinho.map(item => item.id === produto.id ? { ...item, quantidade: item.quantidade + 1 } : item));
+      } else {
+        setCarrinho([...carrinho, { ...produto, quantidade: 1 }]);
+      }
+    }
+  }, [produto]);
 
   const toggleSelecionadoTodos = () => {
     if (!selecionadoTodos) {
@@ -72,10 +112,10 @@ const Carrinho = ({ navigation }) => {
                   onValueChange={() => toggleItemSelecionado(item.id)}
                   style={styles.checkbox}
                 />
-                <Image source={require('../assets/img/remedio.png')} style={styles.imagem} />
+                <Image source={item.imagemProduto} style={styles.imagem} />
                 <View style={styles.texto}>
-                  <Text style={styles.titulo}>{item.nome}</Text>
-                  <Text style={styles.descricao}>{item.descricao}</Text>
+                  <Text style={styles.titulo} numberOfLines={1} ellipsizeMode='tail'>{item.nomeProduto}</Text>
+                  <Text style={styles.descricao} numberOfLines={1} ellipsizeMode='tail'>{item.subtitulo}</Text>
                   <Text style={styles.preco}>R$ {item.preco}</Text>
                 </View>
                 <View style={styles.botoesQuantidade}>
@@ -174,7 +214,8 @@ const styles = StyleSheet.create({
     marginLeft: 10,
     marginRight: 10,
     marginBottom: 5,
-    marginTop: 5
+    marginTop: 5,
+    flex: 1,
   },
   titulo: {
     fontSize: 16,
@@ -191,6 +232,7 @@ const styles = StyleSheet.create({
   botoesQuantidade: {
     flexDirection: 'row',
     alignItems: 'center',
+    marginLeft: 'auto', // Adicionado para empurrar os botões para a extremidade direita
   },
   botaoMenos: {
     borderWidth: 1,
@@ -201,7 +243,7 @@ const styles = StyleSheet.create({
     width: 35,
     height: 35,
     justifyContent: 'center',
-    alignItems: 'center', 
+    alignItems: 'center',
   },
   botaoMais: {
     borderWidth: 1,
@@ -213,7 +255,7 @@ const styles = StyleSheet.create({
     width: 35,
     height: 35,
     justifyContent: 'center',
-    alignItems: 'center', 
+    alignItems: 'center',
   },
   checkbox: {
     marginRight: 10,

@@ -7,7 +7,7 @@ import { useNavigation } from '@react-navigation/native';
 const StatusEntrega = () => {
   const navigation = useNavigation();
   const voltar = () => {
-    navigation.navigate('Mapa');
+    navigation.navigate('CadastroEndereco');
   };
   return (
     <>

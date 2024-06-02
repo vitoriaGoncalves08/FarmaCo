@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   Text,
   StyleSheet,
@@ -8,22 +8,31 @@ import {
   ScrollView,
   Dimensions,
 } from "react-native";
-
 import { useNavigation } from "@react-navigation/native";
+import produtosData from './JsonProdutos.js';
 
 const screenWidth = Dimensions.get('window').width;
 
 const Produtos = () => {
   const navigation = useNavigation();
+  const [produtos, setProdutos] = useState([]);
+
+  useEffect(() => {
+    setProdutos(produtosData);
+  }, []);
+
+  const adicionarAoCarrinho = (produto) => {
+    navigation.navigate('Carrinho', { produto });
+  };
 
   return (
     <ScrollView contentContainerStyle={styles.scrollContainer}>
       <View style={styles.prodRow}>
-        {[1, 2, 3, 4].map((item, index) => (
+        {produtos.map((produto) => (
           <TouchableOpacity
-            key={index}
+            key={produto.id}
             style={styles.cardPress}
-            onPress={() => navigation.navigate('DetalheProduto')}
+            onPress={() => navigation.navigate('DetalheProduto', { produto })}
           >
             <View style={styles.prodBox}>
               <View style={styles.discountArea}>
@@ -31,15 +40,15 @@ const Produtos = () => {
               </View>
               <Image
                 style={styles.prodImage}
-                source={require('../assets/img/remedio.png')}
+                source={produto.imagemProduto}
               />
               <View style={styles.infoProdArea}>
-                <Text style={styles.productName}>Dipirona Monohidratada</Text>
-                <Text style={styles.productDesc}>Remédio para dores</Text>
-                <Text style={styles.productValue}>R$15.00</Text>
+                <Text numberOfLines={2} style={styles.productName}>{produto.nomeProduto}</Text>
+                <Text numberOfLines={1} style={styles.productDesc}>{produto.subtitulo}</Text>
+                <Text style={styles.productValue}>R$ {produto.preco}</Text>
               </View>
               <View style={styles.btnProductArea}>
-                <TouchableOpacity style={styles.btnProduct}>
+                <TouchableOpacity style={styles.btnProduct} onPress={() => adicionarAoCarrinho(produto)}>
                   <Text style={styles.btnProductTxt}>Comprar</Text>
                 </TouchableOpacity>
               </View>
@@ -62,7 +71,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
   },
   cardPress: {
-    width: (screenWidth / 2) - 25, // Subtract padding/margin
+    width: (screenWidth / 2) - 25,
     marginVertical: 10,
   },
   prodBox: {

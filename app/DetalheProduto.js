@@ -6,12 +6,19 @@ import {
   SafeAreaView,
   ScrollView,
   View,
+  TouchableOpacity,
 } from 'react-native';
 import Return from '../components/Return';
 import BotaoCarrinho from '../components/BotaoCarrinho';
 import Botao from '../components/Botao';
 
-const DetalheProduto = ({ navigation }) => {
+const DetalheProduto = ({ route, navigation }) => {
+  const { produto } = route.params;
+
+  const adicionarAoCarrinho = () => {
+    navigation.navigate('Carrinho', { produto });
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView contentContainerStyle={styles.scrollContainer}>
@@ -24,14 +31,12 @@ const DetalheProduto = ({ navigation }) => {
           </View>
         </View>
         <View style={styles.produtotela}>
-          <Image
-            style={styles.imgproduto}
-            source={require('../assets/img/Dipirona.png')}
-          />
+          <Image style={styles.imgproduto} source={produto.imagemProduto} />
         </View>
-        <Text style={styles.nomeproduto}>
-          Dipirona Monoidratada 500mg 10cpr Prati Donaduzzi
-        </Text>
+        <View style={styles.categoria}>
+          <Text style={styles.categoriaText}>{produto.categoria}</Text>
+        </View>
+        <Text style={styles.nomeproduto}>{produto.nomeProduto}</Text>
         <View style={styles.avaliacaocontainer}>
           <View style={styles.estrelacontainer}>
             <Image
@@ -67,37 +72,34 @@ const DetalheProduto = ({ navigation }) => {
           </View>
         </View>
         <View style={styles.descontotext}>
-          <Text>R$00,00</Text>
+          <Text>R$ {produto.precoAntigo}</Text>
         </View>
         <View style={styles.precotext}>
-          <Text style={styles.preco}>R$12,50</Text>
+          <Text style={styles.preco}>R$ {produto.preco}</Text>
         </View>
         <View>
           <Text style={styles.title}>Descrição</Text>
         </View>
         <View style={styles.descricao}>
-          <Text style={styles.paragraph}>
-            Dipirona 1g Genérico Prati-Dunaduzzi 10 Comprimidos é um medicamento
-            utilizado no tratamento da dor e febre. Os efeitos analgésico e
-            antitérmico podem ser esperados em 30 a 60 minutos após a
-            administração e geralmente persistem por aproximadamente 4 horas.
-            Este medicamento é contraindicado para menores de 3 meses de idade
-            ou pesando menos de 5 kg.
-          </Text>
+          <Text style={styles.paragraph}>{produto.descricao}</Text>
         </View>
         <View>
           <Text style={styles.title}>Especificações</Text>
         </View>
         <View style={styles.descricao}>
-          <Text style={styles.paragraph}>
-            Este medicamento não deve ser utilizado por mulheres grávidas sem
-            orientação médica ou do cirurgião-dentista. Informe imediatamente
-            seu médico em caso de suspeita de gravidez.
-          </Text>
+          <Text style={styles.paragraph}>{produto.especificacao}</Text>
         </View>
-        <View style={styles.botaocarrinho}>
-          <Botao href={'Carrinho'} textBtn={'Adicionar ao carrinho'} />
+        <View>
+          <Text style={styles.title}>Para quê serve?</Text>
         </View>
+        <View style={styles.descricao}>
+          <Text style={styles.paragraph}>{produto.subtitulo}</Text>
+        </View>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={adicionarAoCarrinho}>
+          <Text style={styles.buttonText}>Adicionar ao carrinho</Text>
+        </TouchableOpacity>
       </ScrollView>
     </SafeAreaView>
   );
@@ -119,8 +121,8 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     textAlign: 'center',
     fontSize: 20,
-    marginVertical: 10,
     paddingHorizontal: 16,
+    color: '#424141',
   },
   estrelinha: {
     width: 25,
@@ -157,9 +159,9 @@ const styles = StyleSheet.create({
     marginVertical: 20,
   },
   imgproduto: {
-    width: '80%',
+    width: '55%',
     height: undefined,
-    aspectRatio: 207 / 237, // Mantém a proporção da imagem
+    aspectRatio: 107 / 137, // Mantém a proporção da imagem
     resizeMode: 'contain',
   },
   descontotext: {
@@ -167,7 +169,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     marginTop: 10,
     fontSize: 15,
-    color: '#A7A7A7',
     textAlign: 'left',
   },
   precotext: {
@@ -180,15 +181,18 @@ const styles = StyleSheet.create({
   preco: {
     fontWeight: 'bold',
     fontSize: 30,
+    color: '#424141',
   },
   paragraph: {
     fontSize: 15,
     textAlign: 'justify',
     flexWrap: 'wrap',
+    color: '#A7A7A7',
   },
   descricao: {
     paddingHorizontal: 16,
     marginVertical: 10,
+    color: '#A7A7A7',
   },
   title: {
     marginTop: 20,
@@ -196,12 +200,30 @@ const styles = StyleSheet.create({
     fontSize: 18,
     textAlign: 'center',
     paddingHorizontal: 16,
+    color: '#424141',
   },
-  botaocarrinho: {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
+  button: {
+    backgroundColor: '#118E96',
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    borderRadius: 20,
+    padding: 6,
     width: '95%',
-    marginVertical: 2,
+  },
+  buttonText: {
+    color: 'white',
+    fontSize: 16,
+    textAlign: 'center',
+  },
+  categoria: {
+    backgroundColor: '#118E96',
+    padding: 10,
+    borderRadius: 10,
+    marginBottom: 20,
+  },
+  categoriaText: {
+    color: 'white',
+    fontWeight: 'bold',
+    letterSpacing: 1.5,
   },
 });
