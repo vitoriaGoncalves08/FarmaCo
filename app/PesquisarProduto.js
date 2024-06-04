@@ -3,6 +3,7 @@ import { Text, SafeAreaView, StyleSheet, Image, View, TouchableOpacity, TextInpu
 import Produto from '../components/Produtos';
 import TabMenu from '../components/TabMenu';
 import { useNavigation } from "@react-navigation/native";
+import { FontAwesome } from '@expo/vector-icons';
 
 const PesquisarProduto = () => {
   const navigation = useNavigation();
@@ -34,15 +35,15 @@ const PesquisarProduto = () => {
             </View>
           </View>
 
-          <View style={styles.inputWithIcon}>
-            <TouchableOpacity>
-              <Image style={styles.searchBtn} source={require('../assets/img/Search.png')} />
-            </TouchableOpacity>
-            <TextInput
-              style={styles.txtinput}
-              placeholder="Busque seu produto"
-              placeholderStyle={styles.placeholder}
-            />
+          <View style={styles.inputIcon}>
+            <View style={styles.searchContainer}>
+              <FontAwesome style={styles.searchBtn} name="search" size={20} color={'#A7A7A7'} />
+              <TextInput
+                style={styles.searchBox}
+                placeholder='Busque seu produto'
+                placeholderStyle={styles.placeholder}
+              />
+            </View>
           </View>
 
           <View style={styles.filters}>
@@ -91,7 +92,6 @@ const PesquisarProduto = () => {
               </Text>
             </TouchableOpacity>
           </View>
-
           <Produto />
         </ScrollView>
       </SafeAreaView>
@@ -142,32 +142,12 @@ const styles = StyleSheet.create({
     width: 25,
     height: 25,
   },
-  inputWithIcon: {
-    width: '95%',
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-    position: 'relative',
-  },
   searchBtn: {
     width: 18,
     height: 18,
     position: 'absolute',
     left: 18,
     marginTop: -9,
-  },
-  txtinput: {
-    width: '96%',
-    backgroundColor: '#E3E3E3',
-    height: 45,
-    borderRadius: 10,
-    paddingLeft: 50,
-    borderWidth: 0,
-    borderColor: '#CCCCCE',
-    color: '#4F4F4F',
-    marginBottom: 0,
-    outline: 'none',
-    placeholderTextColor: "#A7A7A7",
   },
   placeholder: {
     fontWeight: 'bold',
@@ -189,5 +169,26 @@ const styles = StyleSheet.create({
   selectedFilterText: {
     color: '#118E96',
     textDecorationLine: 'underline',
+  },
+  inputIcon: {
+    width: '95%',
+    height: 40,
+  },
+  searchContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: '#D9D9D9',
+    borderRadius: 7,
+    paddingLeft: 10,
+  },
+  searchBtn: {
+    marginRight: 10,
+    top: 0,
+  },
+  searchBox: {
+    width: '100%',
+    height: 40,
+    fontSize: 13,
+    color: 'black',
   },
 });
