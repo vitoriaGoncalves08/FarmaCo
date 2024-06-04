@@ -9,6 +9,7 @@ import Carrinho from './app/Carrinho';
 import Login from './app/Login';
 import Catalogo from './app/Catalogo';
 import PesquisarProduto from './app/PesquisarProduto';
+import Pedidos from './app/Pedidos';
 import Mapa from './app/Mapa';
 import CadastroEndereco from './app/CadastroEndereco';
 import StatusEntrega from './app/StatusEntrega';
@@ -57,6 +58,11 @@ export default function App() {
         <Stack.Screen
           name="PesquisarProduto"
           component={PesquisarProduto}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="Pedidos"
+          component={Pedidos}
           options={{ headerShown: false }}
         />
         <Stack.Screen
