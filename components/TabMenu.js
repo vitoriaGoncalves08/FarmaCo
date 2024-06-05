@@ -5,6 +5,7 @@ import {
   MaterialCommunityIcons,
   FontAwesome5,
   FontAwesome,
+  Ionicons,
   MaterialIcons,
 } from '@expo/vector-icons';
 
@@ -43,7 +44,7 @@ const TabMenu = () => {
         }}>
         <FontAwesome style={styles.icons} name="search" size={24} color={'#424141'} />
       </TouchableOpacity>
-      {user.nome === 'admin' && user.senha === 123 ? (
+      {user.nome === 'admin' && user.senha === 123 ? (        
         <>
           <CustomTabMenuBottom onPress={() => navigation.navigate('Cadastro')}>
             <FontAwesome5 name="plus" size={24} color="#fff" />
@@ -68,9 +69,16 @@ const TabMenu = () => {
       <TouchableOpacity
         style={styles.tabItem}
         onPress={() => {
-          navigation.navigate('Pedidos');
+          navigation.navigate('HistoricoPedidos');
         }}>
         <FontAwesome5 style={styles.icons} name="shopping-basket" size={24} color={'#424141'} />
+      </TouchableOpacity>
+      <TouchableOpacity
+        style={styles.tabItem}
+        onPress={() => {
+          navigation.navigate('HistoricoEntrega');
+        }}>
+        <FontAwesome5 style={styles.icons} name="shopping-basket" size={24} color={'red'} />
       </TouchableOpacity>
       <TouchableOpacity
         style={styles.tabItem}
