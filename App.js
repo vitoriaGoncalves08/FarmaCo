@@ -9,6 +9,8 @@ import Carrinho from './app/Carrinho';
 import Login from './app/Login';
 import Catalogo from './app/Catalogo';
 import PesquisarProduto from './app/PesquisarProduto';
+import HistoricoPedidos from './app/HistoricoPedidos';
+import HistoricoEntrega from './app/HistoricoEntrega';
 import Mapa from './app/Mapa';
 import CadastroEndereco from './app/CadastroEndereco';
 import StatusEntrega from './app/StatusEntrega';
@@ -57,6 +59,16 @@ export default function App() {
         <Stack.Screen
           name="PesquisarProduto"
           component={PesquisarProduto}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="HistoricoPedidos"
+          component={HistoricoPedidos}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="HistoricoEntrega"
+          component={HistoricoEntrega}
           options={{ headerShown: false }}
         />
         <Stack.Screen
